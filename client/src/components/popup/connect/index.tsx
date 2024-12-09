@@ -1,12 +1,12 @@
-import type { ReactNode } from 'react'
-import { Button, VStack, Image, Text } from '@chakra-ui/react'
-import connectWalletSquare from '@/assets/svg/connectWalletSquare.svg'
-import metamaskIcon from '@/assets/svg/metamask.svg'
-import fastexWalletIconSrc from '@/assets/svg/fastexWallet.svg'
-import { usePopup } from '@/hooks'
+// import type { ReactNode } from 'react'
+import { VStack} from '@chakra-ui/react'
+// import connectWalletSquare from '@/assets/svg/connectWalletSquare.svg'
+// import metamaskIcon from '@/assets/svg/metamask.svg'
+// import fastexWalletIconSrc from '@/assets/svg/fastexWallet.svg'
+// import { usePopup } from '@/hooks'
 
-function Connect({ fromSwitch }: { fromSwitch?: boolean }) {
-  const { onClose } = usePopup()
+function Connect() {
+  // const { onClose } = usePopup()
 
   const renderConnectors = () => {
     return []

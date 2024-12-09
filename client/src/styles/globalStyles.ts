@@ -1,4 +1,3 @@
-import { mode } from '@chakra-ui/theme-tools'
 import theme from '@/styles/theme'
 import '@/index.css'
 
@@ -18,7 +17,7 @@ export default {
       fontFamily: '"Montserrat", sans-serif'
     },
     body: {
-      background: mode('gray.50', 'gray.800')(props)
+      background: 'gray.800'
     },
     '#chakra-toast-manager-top-right': {
       top: '10rem !important'
