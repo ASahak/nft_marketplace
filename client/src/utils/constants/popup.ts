@@ -1,0 +1,3 @@
+export const POPUP_TYPE = {
+  CONNECT_WALLET: 'CONNECT_WALLET',
+}
