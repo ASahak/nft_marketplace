@@ -1,4 +1,4 @@
 const Dashboard = () => {
-  return 'AAA'
+  return null
 }
 export default Dashboard

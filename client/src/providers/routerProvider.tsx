@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 import ROUTE_PATHS from '@/utils/constants/routes'
 import App from '@/App'
+import NotFound from '@/pages/not-found'
 import BaseLayout from '@/components/layout/base'
 
 const Dashboard = lazy(async () => await import('../pages/dashboard'))
@@ -28,7 +29,7 @@ const createRoutes = () =>
               <Route key={path} path={path} element={element} />
             ))}
         </Route>
-        <Route path="*" element={<Dashboard />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     ),
     {

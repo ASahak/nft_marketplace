@@ -1,15 +1,18 @@
 import { memo } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import {
   Box,
   Flex,
-  Stack,
+  Link,
 } from '@chakra-ui/react'
 import {
   Container,
+  ConnectButton,
 } from '@/components'
 import { Logo } from '@/components/icons'
+import ROUTE_PATHS from '@/utils/constants/routes'
 
-export const HeaderPY = { base: '1.2rem', md: '1.6rem' }
+export const HeaderPY = {base: '1.2rem', md: '1.6rem'}
 export const Header = memo(
   () => {
 
@@ -25,32 +28,16 @@ export const Header = memo(
         borderColor="gray.600"
         borderStyle={'solid'}
       >
-        <Container py={HeaderPY} as={Flex} minH={'4rem'} align={'center'}>
-            <>
-              <Flex flex={1} gap={{ base: '5rem', lg: '8rem' }}>
-                {/*<CustomLink to="/">*/}
-                  <Logo />
-                {/*</CustomLink>*/}
-                <Flex as="nav" display={{ base: 'none', md: 'flex' }}>
-                  {/*<DesktopNavbar />*/}
-                </Flex>
-              </Flex>
-              <Stack
-                flex={{ base: 1, md: 0 }}
-                justify={'flex-end'}
-                direction={'row'}
-                spacing={{ base: '0.8rem', sm: '6', md: '1.2rem' }}
-                zIndex={3}
-              >
-                {/*<ConnectButton*/}
-                {/*  borderRadius="0.8rem"*/}
-                {/*  p={{ base: '1.2rem', md: '1.2rem 1.6rem ' }}*/}
-                {/*/>*/}
-              </Stack>
-            </>
-            {/*<CustomLink to="/">*/}
-              {/*<Logo />*/}
-            {/*</CustomLink>*/}
+        <Container py={HeaderPY} as={Flex} minH={'4rem'} align={'center'} justifyContent="space-between">
+          <>
+            <Link as={RouterLink} to={ROUTE_PATHS.DASHBOARD}>
+              <Logo/>
+            </Link>
+            <ConnectButton
+              borderRadius="0.8rem"
+              p={{ base: '1.2rem', md: '1.2rem 1.6rem ' }}
+            />
+          </>
         </Container>
       </Box>
     )
