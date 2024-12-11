@@ -18,7 +18,7 @@ export const RootProvider: FC<RootProviderProps> = ({
   children
 }: RootProviderProps) => {
   return (
-    <WagmiProvider config={config}>
+    <WagmiProvider config={config} reconnectOnMount>
       <QueryClientProvider client={queryClient}>
         <PopupProvider>
           {children}

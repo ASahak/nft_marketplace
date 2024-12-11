@@ -56,7 +56,7 @@ function Popup() {
         ref={modalRef}
         p="2.4rem"
         borderRadius="xl"
-        bg="gray.10"
+        bg="gray.700"
         w={{
           xs: 'calc(100% - 1.6rem)',
           base: 'calc(100% - 3.9rem)',
@@ -66,13 +66,13 @@ function Popup() {
       >
         {popupTitle ? (
           <ModalHeader p={0}>
-            <Heading variant="page-title" fontSize="2rem">
+            <Heading color="white" fontSize="2rem">
               {popupTitle}
             </Heading>
           </ModalHeader>
         ) : null}
         {!popupSettings.hideCloseIcon && (
-          <ModalCloseButton fontSize="1.2rem" top="2.4rem" right="2.4rem" />
+          <ModalCloseButton fontSize="1.2rem" top="2.4rem" right="2.4rem" color="white" />
         )}
         <ModalBody
           mt={popupSettings.hideCloseIcon ? '0' : '2.4rem'}

@@ -9,7 +9,7 @@ export default {
     toast: 10001
   },
   config: {
-    initialColorMode: localStorage.getItem('chakra-ui-color-mode') ?? 'light',
+    initialColorMode: 'dark',
     useSystemColorMode: false,
     disableTransitionOnChange: false
   }

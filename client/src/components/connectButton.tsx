@@ -9,13 +9,12 @@ import {
   Text,
   useToast
 } from '@chakra-ui/react'
-import { useAccount } from "wagmi";
-import { trimString } from "@/utils/helpers/global.ts";
-// import {
-//   usePopup,
-// } from '@/hooks'
-// import { POPUP_TITLES, POPUP_TYPE } from '@/utils/constants'
-// import { trimString } from '@/utils/helpers'
+import { useAccount, useDisconnect } from "wagmi";
+import { trimString } from "@/utils/helpers/global";
+import {
+  usePopup,
+} from '@/hooks'
+import { POPUP_TYPE, POPUP_TITLES } from '@/utils/constants/popup'
 
 interface IProps {
   mt?: string | number
@@ -27,20 +26,17 @@ interface IProps {
 
 export const ConnectButton = memo((props: IProps) => {
   const connectedUser = useAccount()
-  // const { openPopup, isOpen } = usePopup()
+  const { disconnect } = useDisconnect()
+  const { openPopup } = usePopup()
   const toast = useToast()
-  // const { gray120_gray450 } = useThemeColors()
-  // const { isMobile } = useGlobalVariables()
   const buttonRef = useRef<HTMLButtonElement | null>(null)
 
   const handleOpenConnect = () => {
-    // openPopup(POPUP_TYPE.CONNECT_WALLET, POPUP_TITLES.connect, {
-    //   fromSwitch: !!fromSwitch
-    // })
+    openPopup(POPUP_TYPE.CONNECT_WALLET, POPUP_TITLES.CONNECT_WALLET)
   }
 
   const handleDisconnect = () => {
-    // disconnect()
+    disconnect()
   }
 
   const handleSwitchWallet = () => {
@@ -48,25 +44,25 @@ export const ConnectButton = memo((props: IProps) => {
   }
 
   const handleCopyAddress = () => {
-    // navigator.clipboard
-    //   .writeText(connectedUser?.address || '')
-    //   .then(function () {
-    //     toast({
-    //       status: 'success',
-    //       title: 'Wallet address copied to clipboard'
-    //     })
-    //   })
-    //   .catch(function () {
-    //     toast({
-    //       status: 'error',
-    //       title: 'Failed to copy wallet address to clipboard'
-    //     })
-    //   })
+    navigator.clipboard
+      .writeText(connectedUser?.address || '')
+      .then(function () {
+        toast({
+          status: 'success',
+          title: 'Wallet address copied to clipboard'
+        })
+      })
+      .catch(function () {
+        toast({
+          status: 'error',
+          title: 'Failed to copy wallet address to clipboard'
+        })
+      })
   }
 
   return (
     <>
-      {connectedUser ? (
+      {connectedUser.address ? (
         <Menu
           variant="base"
           placement="bottom-end"
@@ -81,7 +77,7 @@ export const ConnectButton = memo((props: IProps) => {
             ref={buttonRef}
             {...props}
           >
-            {trimString(connectedUser.address!, 4, 4)}
+            {trimString(connectedUser.address, 4, 4)}
             <Text
               ml={4}
               as="i"
@@ -118,7 +114,7 @@ export const ConnectButton = memo((props: IProps) => {
                 onClick={handleCopyAddress}
                 aria-label="Copy wallet id"
               >
-                {trimString(connectedUser.address!, 4, 4)}
+                {trimString(connectedUser.address, 4, 4)}
                 <Text as="span" className="icon-copy" ml="auto" />
               </MenuItem>
             )}

@@ -1,11 +1,11 @@
-// import type { ReactNode } from 'react'
-import { VStack} from '@chakra-ui/react'
-// import connectWalletSquare from '@/assets/svg/connectWalletSquare.svg'
-// import metamaskIcon from '@/assets/svg/metamask.svg'
-// import fastexWalletIconSrc from '@/assets/svg/fastexWallet.svg'
-// import { usePopup } from '@/hooks'
+import { ReactNode, useCallback } from "react";
+import { Button, HStack, Icon } from '@chakra-ui/react'
+import { useConnectors } from 'wagmi'
+import { ConnectorsWithTypes } from "@/enums/connectors";
+import { MetamaskIcon, WalletConnectIcon } from "@/components/icons";
 
 function Connect() {
+  const connectors = useConnectors()
   // const { onClose } = usePopup()
 
   const renderConnectors = () => {
@@ -109,6 +109,17 @@ function Connect() {
     //   .map((c) => c.content())
   }
 
+  const getIcon = useCallback((type: ConnectorsWithTypes): ReactNode => {
+    switch (type) {
+      case ConnectorsWithTypes.METAMASK:
+        return <Icon w="4.8rem" h="4.8rem" as={MetamaskIcon}/>
+      case ConnectorsWithTypes.WALLET_CONNECT:
+        return <Icon w="4.8rem" h="4.8rem" as={WalletConnectIcon}/>
+      default:
+        return null
+    }
+  }, [])
+
   // const handleConnect = (isMetamask?: boolean) => {
   //   if (isMetamask) {
   //     connectWithMetamask(fromSwitch)
@@ -123,9 +134,21 @@ function Connect() {
   // }, [status])
 
   return (
-    <VStack spacing="1.6rem" mt={4} w={{ base: '25rem', md: '35.2rem' }}>
+    <HStack spacing="1.6rem" mt={4} w={{ base: '25rem', md: '35.2rem' }}>
       {renderConnectors()}
-    </VStack>
+      {connectors.map(c => <Button
+        key={c.type}
+        aria-label={`Connect with wallet ${c.name}`}
+        w="full"
+        variant="connect"
+        alignItems="center"
+        fontSize="1.6rem"
+        onClick={() => c.connect()}
+        textAlign="center"
+      >
+        {getIcon(c.type as ConnectorsWithTypes)}
+      </Button>)}
+    </HStack>
   )
 }
 

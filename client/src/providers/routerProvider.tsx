@@ -10,6 +10,7 @@ import ROUTE_PATHS from '@/utils/constants/routes'
 import App from '@/App'
 import NotFound from '@/pages/not-found'
 import BaseLayout from '@/components/layout/base'
+import { RootErrorBoundary } from '@/components'
 
 const Dashboard = lazy(async () => await import('../pages/dashboard'))
 type IRoutes = Array<RouteProps>
@@ -23,8 +24,8 @@ export const routes: IRoutes = [
 const createRoutes = () =>
   createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<App />}>
-        <Route path="/" element={<BaseLayout />} errorElement={null}>
+      <Route path="/" element={<App />} errorElement={<RootErrorBoundary />}>
+        <Route path="/" element={<BaseLayout />}>
           {routes.map(({ path, element }) => (
               <Route key={path} path={path} element={element} />
             ))}

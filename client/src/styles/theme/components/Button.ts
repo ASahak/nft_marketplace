@@ -375,20 +375,21 @@ export default defineStyleConfig({
           colorMode === 'dark' ? '#373A43 !important' : '#AFB4BC !important'
       }
     }),
-    connect: ({ colorMode }) => ({
+    connect: () => ({
       fontSize: '1.3rem',
       fontFamily: 'Montserrat, sans-serif',
       fontWeight: '600',
-      bg: colorMode === 'dark' ? 'gray.600' : 'gray.50',
+      bg: 'gray.600',
       border: 'none',
       rounded: '1.2rem',
       display: 'flex',
+      color: 'white',
       justifyContent: 'flex-start',
       h: 'auto',
       p: '1.2rem',
       gap: '1.2rem',
       _hover: {
-        bgColor: colorMode === 'dark' ? 'gray.560' : 'gray.60'
+        bgColor: 'gray.560'
       }
     })
   },
