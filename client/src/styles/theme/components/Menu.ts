@@ -13,6 +13,7 @@ export default defineStyleConfig({
         flexDirection: 'column',
         touchAction: 'none',
         width: '100%',
+        border: 'none',
         backgroundColor: colorMode === 'dark' ? 'gray.560' : 'white'
       },
       item: {

@@ -1,4 +1,5 @@
 export { Spinner } from './spinner'
 export { Logo } from './logo'
+export { CoinbaseIcon } from './coinbase'
 export { WalletConnectIcon } from './walletConnect'
 export { MetamaskIcon } from './metamask'
