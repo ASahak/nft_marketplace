@@ -7,7 +7,14 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "biome check .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "pre-commit": "lint-staged",
+    "pre-push": "npm run build"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run lint"
+    ]
   },
   "dependencies": {
     "@chakra-ui/react": "^2.10.4",
@@ -33,6 +40,9 @@
     "@wagmi/cli": "latest",
     "buffer": "^6.0.3",
     "typescript": "^5.4.5",
-    "vite": "^5.2.11"
+    "vite": "^5.2.11",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5"
   }
 }

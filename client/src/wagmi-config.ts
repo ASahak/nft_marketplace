@@ -7,7 +7,14 @@ export const config = createConfig({
   connectors: [
     metaMask(),
     coinbaseWallet(),
-    walletConnect({ projectId: import.meta.env.VITE_WC_PROJECT_ID }),
+    walletConnect({
+      projectId: import.meta.env.VITE_WC_PROJECT_ID,
+      qrModalOptions: {
+        themeVariables: {
+          '--wcm-z-index': '100000'
+        }
+      }
+    }),
   ],
   transports: {
     [mainnet.id]: http(),

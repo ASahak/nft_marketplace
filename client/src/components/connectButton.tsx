@@ -1,7 +1,7 @@
 import { memo, useRef } from 'react'
 import {
   Button,
-  Divider,
+  Divider, Icon,
   Menu,
   MenuButton,
   MenuItem,
@@ -10,6 +10,7 @@ import {
   useToast
 } from '@chakra-ui/react'
 import { useAccount, useDisconnect } from "wagmi";
+import { HiOutlineChevronDown, HiOutlineDuplicate } from "react-icons/hi";
 import { trimString } from "@/utils/helpers/global";
 import {
   usePopup,
@@ -77,14 +78,18 @@ export const ConnectButton = memo((props: IProps) => {
             ref={buttonRef}
             {...props}
           >
-            {trimString(connectedUser.address, 4, 4)}
             <Text
-              ml={4}
-              as="i"
-              className="icon-arrow-down"
-              fontSize="1.1rem"
-              fontWeight="400"
-            />
+              display="flex"
+              alignItems="center"
+            >
+              {trimString(connectedUser.address, 4, 4)}
+              <Icon
+                ml={4}
+                as={HiOutlineChevronDown}
+                fontSize="1.6rem"
+                fontWeight="400"
+              />
+            </Text>
           </MenuButton>
           <MenuList w="24rem">
             <MenuItem
@@ -115,7 +120,7 @@ export const ConnectButton = memo((props: IProps) => {
                 aria-label="Copy wallet id"
               >
                 {trimString(connectedUser.address, 4, 4)}
-                <Text as="span" className="icon-copy" ml="auto" />
+                <Text as={HiOutlineDuplicate} ml="auto" fontSize="2rem" />
               </MenuItem>
             )}
           </MenuList>
