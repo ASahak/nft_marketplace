@@ -8,8 +8,6 @@
     "build": "tsc && vite build",
     "lint": "biome check .",
     "preview": "vite preview",
-    "pre-commit": "lint-staged",
-    "pre-push": "npm run build",
     "prepare": "cd .. && husky ./client/.husky"
   },
   "lint-staged": {
