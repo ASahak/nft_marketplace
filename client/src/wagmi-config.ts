@@ -14,12 +14,12 @@ export const config = createConfig({
           '--wcm-z-index': '100000'
         }
       }
-    }),
+    })
   ],
   transports: {
     [mainnet.id]: http(),
-    [sepolia.id]: http(),
-  },
+    [sepolia.id]: http()
+  }
 })
 
 declare module 'wagmi' {

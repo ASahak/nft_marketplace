@@ -72,7 +72,12 @@ function Popup() {
           </ModalHeader>
         ) : null}
         {!popupSettings.hideCloseIcon && (
-          <ModalCloseButton fontSize="1.2rem" top="2.4rem" right="2.4rem" color="white" />
+          <ModalCloseButton
+            fontSize="1.2rem"
+            top="2.4rem"
+            right="2.4rem"
+            color="white"
+          />
         )}
         <ModalBody
           mt={popupSettings.hideCloseIcon ? '0' : '2.4rem'}

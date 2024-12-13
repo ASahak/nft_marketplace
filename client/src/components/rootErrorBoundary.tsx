@@ -1,6 +1,6 @@
 import { Button, Flex, Text, Icon } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
-import { AiOutlineWarning } from "react-icons/ai";
+import { AiOutlineWarning } from 'react-icons/ai'
 import ROUTE_PATHS from '@/utils/constants/routes'
 
 export const RootErrorBoundary = () => {
@@ -19,11 +19,7 @@ export const RootErrorBoundary = () => {
       justifyContent="center"
       p="1.2rem"
     >
-      <Icon
-        as={AiOutlineWarning}
-        fontSize="5.2rem"
-        color="orange.200"
-      />
+      <Icon as={AiOutlineWarning} fontSize="5.2rem" color="orange.200" />
       <Text
         mt="1.6rem"
         fontSize="1.6rem"

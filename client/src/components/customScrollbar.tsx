@@ -6,24 +6,24 @@ import {
   useCallback,
   forwardRef,
   useImperativeHandle,
-  ReactNode,
-} from 'react';
-import { useMeasure } from 'react-use';
-import { Scrollbars } from 'react-custom-scrollbars-2';
-import { isMobile } from 'react-device-detect';
-import { Box } from '@chakra-ui/react';
+  ReactNode
+} from 'react'
+import { useMeasure } from 'react-use'
+import { Scrollbars } from 'react-custom-scrollbars-2'
+import { isMobile } from 'react-device-detect'
+import { Box } from '@chakra-ui/react'
 
 interface CustomScrollbarProps {
-  children: ReactNode;
-  renderTrackVerticalStyle?: React.CSSProperties;
-  renderTrackHorizontal?: React.CSSProperties;
-  disableOnMobile?: boolean;
-  autoHideX?: boolean;
-  [key: string]: any;
+  children: ReactNode
+  renderTrackVerticalStyle?: React.CSSProperties
+  renderTrackHorizontal?: React.CSSProperties
+  disableOnMobile?: boolean
+  autoHideX?: boolean
+  [key: string]: any
 }
 
 interface CustomScrollbarRef {
-  getScrollRef: () => Scrollbars | null;
+  getScrollRef: () => Scrollbars | null
 }
 
 export const CustomScrollbar = memo(
@@ -39,24 +39,27 @@ export const CustomScrollbar = memo(
       },
       ref
     ) => {
-      const [scrollRef, { width, height }] = useMeasure<HTMLDivElement>();
-      const scrollBarRef = useRef<Scrollbars | null>(null);
-      const [scrollAble, setScrollAble] = useState({ x: false, y: false });
+      const [scrollRef, { width, height }] = useMeasure<HTMLDivElement>()
+      const scrollBarRef = useRef<Scrollbars | null>(null)
+      const [scrollAble, setScrollAble] = useState({ x: false, y: false })
 
-      const scrollBarRefCb = useCallback((node: Scrollbars | null) => {
-        scrollBarRef.current = node;
-        if (node !== null) {
-          scrollRef(node.container);
-        }
-      }, [scrollRef]);
+      const scrollBarRefCb = useCallback(
+        (node: Scrollbars | null) => {
+          scrollBarRef.current = node
+          if (node !== null) {
+            scrollRef(node.container)
+          }
+        },
+        [scrollRef]
+      )
 
       useImperativeHandle(
         ref,
         () => ({
-          getScrollRef: () => scrollBarRef.current,
+          getScrollRef: () => scrollBarRef.current
         }),
         []
-      );
+      )
 
       useEffect(() => {
         if (scrollBarRef.current) {
@@ -66,10 +69,10 @@ export const CustomScrollbar = memo(
               scrollBarRef.current.getClientHeight(),
             x:
               scrollBarRef.current.getScrollWidth() >
-              scrollBarRef.current.getClientWidth(),
-          });
+              scrollBarRef.current.getClientWidth()
+          })
         }
-      }, [width, height]);
+      }, [width, height])
 
       return isMobile && disableOnMobile ? (
         <>{children}</>
@@ -84,7 +87,7 @@ export const CustomScrollbar = memo(
               style={{
                 width: '.4rem',
                 borderRadius: '8px',
-                backgroundColor: 'var(--chakra-colors-brand-500)',
+                backgroundColor: 'var(--chakra-colors-brand-500)'
               }}
             />
           )}
@@ -95,7 +98,7 @@ export const CustomScrollbar = memo(
               style={{
                 borderRadius: '8px',
                 backgroundColor: 'var(--chakra-colors-brand-500)',
-                height: '.4rem',
+                height: '.4rem'
               }}
             />
           )}
@@ -110,7 +113,7 @@ export const CustomScrollbar = memo(
                 zIndex: 99,
                 right: 0,
                 top: 0,
-                ...(renderTrackVerticalStyle ?? {}),
+                ...(renderTrackVerticalStyle ?? {})
               }}
               {...props}
             />
@@ -126,7 +129,7 @@ export const CustomScrollbar = memo(
                 zIndex: 99,
                 left: 0,
                 bottom: 0,
-                ...(renderTrackHorizontal ?? {}),
+                ...(renderTrackHorizontal ?? {})
               }}
               {...(!autoHideX && { opacity: '1 !important' })}
               {...props}
@@ -136,7 +139,7 @@ export const CustomScrollbar = memo(
         >
           {children}
         </Scrollbars>
-      );
+      )
     }
   )
-);
+)

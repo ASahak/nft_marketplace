@@ -18,7 +18,7 @@ export const routes: IRoutes = [
   {
     path: ROUTE_PATHS.DASHBOARD,
     element: <Dashboard />
-  },
+  }
 ]
 
 const createRoutes = () =>
@@ -27,8 +27,8 @@ const createRoutes = () =>
       <Route path="/" element={<App />} errorElement={<RootErrorBoundary />}>
         <Route path="/" element={<BaseLayout />}>
           {routes.map(({ path, element }) => (
-              <Route key={path} path={path} element={element} />
-            ))}
+            <Route key={path} path={path} element={element} />
+          ))}
         </Route>
         <Route path="*" element={<NotFound />} />
       </Route>

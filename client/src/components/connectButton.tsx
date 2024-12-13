@@ -1,7 +1,8 @@
 import { memo, useRef } from 'react'
 import {
   Button,
-  Divider, Icon,
+  Divider,
+  Icon,
   Menu,
   MenuButton,
   MenuItem,
@@ -9,12 +10,10 @@ import {
   Text,
   useToast
 } from '@chakra-ui/react'
-import { useAccount, useDisconnect } from "wagmi";
-import { HiOutlineChevronDown, HiOutlineDuplicate } from "react-icons/hi";
-import { trimString } from "@/utils/helpers/global";
-import {
-  usePopup,
-} from '@/hooks'
+import { useAccount, useDisconnect } from 'wagmi'
+import { HiOutlineChevronDown, HiOutlineDuplicate } from 'react-icons/hi'
+import { trimString } from '@/utils/helpers/global'
+import { usePopup } from '@/hooks'
 import { POPUP_TYPE, POPUP_TITLES } from '@/utils/constants/popup'
 
 interface IProps {
@@ -78,10 +77,7 @@ export const ConnectButton = memo((props: IProps) => {
             ref={buttonRef}
             {...props}
           >
-            <Text
-              display="flex"
-              alignItems="center"
-            >
+            <Text display="flex" alignItems="center">
               {trimString(connectedUser.address, 4, 4)}
               <Icon
                 ml={4}

@@ -1,7 +1,7 @@
 // import { useAccount, useConnect, useDisconnect } from 'wagmi'
-import { RootProvider } from "@/providers";
-import { Flex } from "@chakra-ui/react";
-import { Outlet } from "react-router-dom";
+import { RootProvider } from '@/providers'
+import { Flex } from '@chakra-ui/react'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   // const account = useAccount()

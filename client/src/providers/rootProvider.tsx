@@ -1,12 +1,9 @@
 import { type ReactNode, FC } from 'react'
 import { WagmiProvider } from 'wagmi'
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Popup from '@/components/popup'
-import {
-  PopupProvider,
-} from '@/providers'
+import { PopupProvider } from '@/providers'
 import { config } from '@/wagmi-config'
-
 
 const queryClient = new QueryClient()
 
@@ -22,7 +19,7 @@ export const RootProvider: FC<RootProviderProps> = ({
       <QueryClientProvider client={queryClient}>
         <PopupProvider>
           {children}
-          <Popup/>
+          <Popup />
         </PopupProvider>
       </QueryClientProvider>
     </WagmiProvider>

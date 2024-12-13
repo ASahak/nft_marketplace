@@ -4,24 +4,18 @@ import {
   AlertIcon,
   AlertTitle,
   Icon,
-  ChakraProvider as _ChakraProvider,
+  ChakraProvider as _ChakraProvider
 } from '@chakra-ui/react'
-import { HiCheckCircle, HiOutlineExclamationCircle } from "react-icons/hi";
+import { HiCheckCircle, HiOutlineExclamationCircle } from 'react-icons/hi'
 import theme from '@/styles/theme'
 
 const colorScheme = (
-  status: string,
+  status: string
 ): { bgColor: string; color: string; icon: ReactNode | null } => {
   switch (status) {
     case 'success':
       return {
-        icon: (
-          <Icon
-            as={HiCheckCircle}
-            fontSize="2.4rem"
-            color="green.700"
-          />
-        ),
+        icon: <Icon as={HiCheckCircle} fontSize="2.4rem" color="green.700" />,
         bgColor: '#1B3830',
         color: 'white'
       }
