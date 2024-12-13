@@ -1,1 +1,1 @@
-npm run pre-commit
+cd client && npx lint-staged
