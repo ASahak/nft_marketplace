@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext, type ReactNode, useContext, useState } from 'react'
 import { type ChakraProps, useDisclosure } from '@chakra-ui/react'
 import { useStateWithCallback } from '@/hooks'

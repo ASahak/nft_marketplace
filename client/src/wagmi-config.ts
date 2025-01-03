@@ -1,3 +1,5 @@
+'use client'
+
 import { http, createConfig } from 'wagmi'
 import { mainnet, sepolia } from 'wagmi/chains'
 import { coinbaseWallet, walletConnect, metaMask } from 'wagmi/connectors'
@@ -8,7 +10,7 @@ export const config = createConfig({
     metaMask(),
     coinbaseWallet(),
     walletConnect({
-      projectId: import.meta.env.VITE_WC_PROJECT_ID,
+      projectId: process.env.NEXT_PUBLIC_WC_PROJECT_ID!,
       qrModalOptions: {
         themeVariables: {
           '--wcm-z-index': '100000'

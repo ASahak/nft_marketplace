@@ -1,5 +1,4 @@
 import theme from '@/styles/theme'
-import '@/index.css'
 
 export default {
   global: (props: any) => ({

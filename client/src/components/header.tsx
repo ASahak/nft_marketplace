@@ -1,5 +1,7 @@
+'use client'
+
 import { memo } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import RouterLink from 'next/link'
 import { Box, Flex, Link } from '@chakra-ui/react'
 import { Container, ConnectButton } from '@/components'
 import { Logo } from '@/components/icons'
@@ -27,7 +29,7 @@ export const Header = memo(() => {
         justifyContent="space-between"
       >
         <>
-          <Link as={RouterLink} to={ROUTE_PATHS.DASHBOARD}>
+          <Link as={RouterLink} href={ROUTE_PATHS.DASHBOARD}>
             <Logo />
           </Link>
           <ConnectButton

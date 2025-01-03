@@ -1,3 +1,5 @@
+'use client'
+
 import React, { type ReactNode } from 'react'
 import {
   Alert,
@@ -6,6 +8,7 @@ import {
   Icon,
   ChakraProvider as _ChakraProvider
 } from '@chakra-ui/react'
+import { CacheProvider } from '@chakra-ui/next-js'
 import { HiCheckCircle, HiOutlineExclamationCircle } from 'react-icons/hi'
 import theme from '@/styles/theme'
 
@@ -53,42 +56,46 @@ const colorScheme = (
 }
 export const ChakraProvider = ({ children }: { children: ReactNode }) => {
   return (
-    <_ChakraProvider
-      theme={theme}
-      toastOptions={{
-        defaultOptions: {
-          duration: 4000,
-          position: 'top-right', // it has styles with this keyword in the globalStyles.ts file
-          render(props: any): React.ReactNode {
-            const { bgColor, color, icon } = colorScheme(props.status as string)
+    <CacheProvider>
+      <_ChakraProvider
+        theme={theme}
+        toastOptions={{
+          defaultOptions: {
+            duration: 4000,
+            position: 'top-right', // it has styles with this keyword in the globalStyles.ts file
+            render(props: any): React.ReactNode {
+              const { bgColor, color, icon } = colorScheme(
+                props.status as string
+              )
 
-            return (
-              <Alert
-                borderRadius="1.2rem"
-                bgColor={bgColor}
-                color={color}
-                p="1.46rem"
-                fontSize="1.4rem"
-              >
-                {icon ? (
-                  <AlertIcon
-                    boxSize="2.6rem"
-                    display="flex"
-                    alignItems="center"
-                  >
-                    {icon}
-                  </AlertIcon>
-                ) : null}
-                <AlertTitle m={0} fontSize="1.6rem">
-                  {props.title}
-                </AlertTitle>
-              </Alert>
-            )
+              return (
+                <Alert
+                  borderRadius="1.2rem"
+                  bgColor={bgColor}
+                  color={color}
+                  p="1.46rem"
+                  fontSize="1.4rem"
+                >
+                  {icon ? (
+                    <AlertIcon
+                      boxSize="2.6rem"
+                      display="flex"
+                      alignItems="center"
+                    >
+                      {icon}
+                    </AlertIcon>
+                  ) : null}
+                  <AlertTitle m={0} fontSize="1.6rem">
+                    {props.title}
+                  </AlertTitle>
+                </Alert>
+              )
+            }
           }
-        }
-      }}
-    >
-      {children}
-    </_ChakraProvider>
+        }}
+      >
+        {children}
+      </_ChakraProvider>
+    </CacheProvider>
   )
 }

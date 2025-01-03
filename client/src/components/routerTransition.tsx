@@ -1,3 +1,5 @@
+'use client'
+
 import { memo, type ReactNode, useEffect } from 'react'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { Box } from '@chakra-ui/react'

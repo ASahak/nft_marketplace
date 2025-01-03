@@ -1,27 +1,37 @@
+'use client'
+
 import { type ReactNode, FC } from 'react'
-import { WagmiProvider } from 'wagmi'
+import { WagmiProvider, cookieToInitialState } from 'wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Popup from '@/components/popup'
-import { PopupProvider } from '@/providers'
+import { ChakraProvider, PopupProvider } from '@/providers'
 import { config } from '@/wagmi-config'
 
 const queryClient = new QueryClient()
 
 interface RootProviderProps {
   children: ReactNode
+  cookie?: string | null
 }
 
 export const RootProvider: FC<RootProviderProps> = ({
-  children
+  children,
+  cookie
 }: RootProviderProps) => {
   return (
-    <WagmiProvider config={config} reconnectOnMount>
-      <QueryClientProvider client={queryClient}>
-        <PopupProvider>
-          {children}
-          <Popup />
-        </PopupProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+    <ChakraProvider>
+      <WagmiProvider
+        config={config}
+        reconnectOnMount={false}
+        initialState={cookieToInitialState(config, cookie)}
+      >
+        <QueryClientProvider client={queryClient}>
+          <PopupProvider>
+            {children}
+            <Popup />
+          </PopupProvider>
+        </QueryClientProvider>
+      </WagmiProvider>
+    </ChakraProvider>
   )
 }

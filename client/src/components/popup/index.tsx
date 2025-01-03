@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef } from 'react'
 import {
   Heading,
@@ -41,7 +43,7 @@ function Popup() {
 
   return (
     <Modal
-      initialFocusRef={modalRef}
+      initialFocusRef={modalRef as unknown as never}
       key={motionPreset}
       isCentered
       isOpen={isOpen}

@@ -1,3 +1,5 @@
+'use client'
+
 import { ReactNode, useCallback, useEffect, useRef } from 'react'
 import { Button, HStack, Icon } from '@chakra-ui/react'
 import { Connector, useAccount, useConnectors } from 'wagmi'

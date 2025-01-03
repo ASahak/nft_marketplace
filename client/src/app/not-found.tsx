@@ -1,4 +1,4 @@
-import { Link as RouterLink } from 'react-router-dom'
+import RouterLink from 'next/link'
 import { Box, Heading, Text, Link } from '@chakra-ui/react'
 import ROUTE_PATHS from '@/utils/constants/routes'
 
@@ -9,7 +9,7 @@ const NotFound = () => {
       <Text my={4} fontSize="1.6rem" textAlign="center">
         Sorry, the page you are looking for does not exist.
       </Text>
-      <Link as={RouterLink} to={ROUTE_PATHS.DASHBOARD} fontSize="1.6rem">
+      <Link as={RouterLink} href={ROUTE_PATHS.DASHBOARD} fontSize="1.6rem">
         Go to Home
       </Link>
     </Box>

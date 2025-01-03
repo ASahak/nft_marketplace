@@ -1,7 +1,13 @@
-import { useLocation } from 'react-router-dom'
+'use client'
+
+import { usePathname } from 'next/navigation'
 
 export const useHash = () => {
-  const { hash } = useLocation()
+  const pathname = usePathname()
+  const hashIndex = pathname.indexOf('#')
 
-  return decodeURIComponent(hash.replace('#', ''))
+  // Extract and decode the hash if it exists
+  const hash = hashIndex !== -1 ? pathname.substring(hashIndex + 1) : ''
+
+  return decodeURIComponent(hash)
 }

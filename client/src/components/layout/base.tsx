@@ -1,19 +1,19 @@
-import { Suspense } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
-import { Flex } from '@chakra-ui/react'
-import { RouteLoading, Header, RouterTransition } from '@/components'
+'use client'
 
-function BaseLayout() {
-  const { pathname } = useLocation()
+import { usePathname } from 'next/navigation'
+import { Flex } from '@chakra-ui/react'
+import { Header, RouterTransition } from '@/components'
+
+type IProps = {
+  children: React.ReactNode
+}
+function BaseLayout({ children }: IProps) {
+  const pathname = usePathname()
 
   return (
     <Flex flexDirection="column" minH="full">
       <Header />
-      <Suspense fallback={<RouteLoading />}>
-        <RouterTransition routerName={pathname}>
-          <Outlet />
-        </RouterTransition>
-      </Suspense>
+      <RouterTransition routerName={pathname}>{children}</RouterTransition>
     </Flex>
   )
 }

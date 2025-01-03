@@ -1,13 +1,15 @@
+'use client'
+
 import { Button, Flex, Text, Icon } from '@chakra-ui/react'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/router'
 import { AiOutlineWarning } from 'react-icons/ai'
 import ROUTE_PATHS from '@/utils/constants/routes'
 
 export const RootErrorBoundary = () => {
-  const navigate = useNavigate()
+  const router = useRouter()
 
   const goToDashboard = () => {
-    navigate(ROUTE_PATHS.DASHBOARD)
+    router.push(ROUTE_PATHS.DASHBOARD)
   }
 
   return (
