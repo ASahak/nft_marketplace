@@ -1,5 +1,5 @@
 export enum ConnectorsWithTypes {
-  METAMASK = 'metaMask',
+  METAMASK = 'injected',
   WALLET_CONNECT = 'walletConnect',
   COINBASE_WALLET = 'coinbaseWallet'
 }

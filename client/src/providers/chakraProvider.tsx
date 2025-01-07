@@ -58,6 +58,7 @@ export const ChakraProvider = ({ children }: { children: ReactNode }) => {
   return (
     <CacheProvider>
       <_ChakraProvider
+        cssVarsRoot="body"
         theme={theme}
         toastOptions={{
           defaultOptions: {

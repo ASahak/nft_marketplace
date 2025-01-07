@@ -13,22 +13,18 @@ export const metadata: Metadata = {
     'NFT, Non-Fungible Tokens, Crypto, Blockchain, Marketplace, Digital Art, Collectibles',
   robots: 'index, follow'
 }
-export async function getCookieValue() {
-  const headersList = await headers()
-  return headersList.get('cookie')
-}
 
 export default async function RootLayout({
   children
 }: Readonly<{
   children: ReactNode
 }>) {
-  const cookie = await getCookieValue()
+  const wagmiCookie = (await headers()).get('cookie')
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={false}>
       <body>
-        <RootProvider cookie={cookie}>
+        <RootProvider wagmiCookie={wagmiCookie}>
           <Flex direction="column" h="100vh" id="app">
             <BaseLayout>{children}</BaseLayout>
           </Flex>
