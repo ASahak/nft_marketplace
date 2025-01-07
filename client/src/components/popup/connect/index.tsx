@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useCallback, useEffect, useRef } from 'react'
+import { ReactNode, useCallback, useEffect, useMemo, useRef } from 'react'
 import { Button, HStack, Icon } from '@chakra-ui/react'
 import { Connector, useAccount, useConnectors } from 'wagmi'
 import { ConnectorsWithTypes } from '@/enums/connectors'
@@ -17,6 +17,17 @@ function Connect() {
   const connectors = useConnectors()
   const { onClose } = usePopup()
   const disconnectedState = useRef(isDisconnected)
+
+  const filteredConnectors = useMemo(() => {
+    const set = new Set()
+    return connectors.filter((item: Connector) => {
+      if (set.has(item.type)) {
+        return false
+      }
+      set.add(item.type)
+      return true
+    })
+  }, [connectors])
 
   const getIcon = useCallback((type: ConnectorsWithTypes): ReactNode => {
     switch (type) {
@@ -52,7 +63,7 @@ function Connect() {
 
   return (
     <HStack spacing="1.6rem" mt={4} w={{ base: '25rem', md: '35.2rem' }}>
-      {connectors.map((c) => (
+      {filteredConnectors.map((c) => (
         <Button
           key={c.type}
           title={c.name}

@@ -22,7 +22,7 @@ export default async function RootLayout({
   const wagmiCookie = (await headers()).get('cookie')
 
   return (
-    <html lang="en" suppressHydrationWarning={false}>
+    <html lang="en" suppressHydrationWarning>
       <body>
         <RootProvider wagmiCookie={wagmiCookie}>
           <Flex direction="column" h="100vh" id="app">
