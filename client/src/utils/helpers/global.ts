@@ -7,3 +7,5 @@ export const trimString = (
   const end = str.slice(str.length - endCount, str.length)
   return `${start}...${end}`
 }
+
+export const isClient = typeof window !== 'undefined'

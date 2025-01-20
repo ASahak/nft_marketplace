@@ -11,7 +11,8 @@ import {
   ModalOverlay,
   useColorModeValue
 } from '@chakra-ui/react'
-import Connect from './connect'
+import { Connect } from './connect'
+import { GlobalSearch } from './globalSearch'
 import { POPUP_TYPE } from '@/utils/constants/popup'
 import { usePopup } from '@/hooks'
 
@@ -36,6 +37,8 @@ function Popup() {
     switch (popupType) {
       case POPUP_TYPE.CONNECT_WALLET:
         return <Connect {...(popupData as any)} />
+      case POPUP_TYPE.GLOBAL_SEARCH:
+        return <GlobalSearch {...(popupData as any)} />
       default:
         return <div>Unknown popup type</div>
     }

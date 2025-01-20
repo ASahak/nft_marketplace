@@ -4,17 +4,25 @@ export default defineStyleConfig({
   baseStyle: {
     fontFamily: 'inherit'
   },
-  sizes: {},
-  variants: {
-    'amount-input': ({ colorMode }) => ({
+  sizes: {
+    md: {
       field: {
-        border: 'none',
-        transition: 'box-shadow .3s',
-        boxShadow: '0px 0px 2px 1px transparent',
-        borderRadius: 'md',
-        bgColor: colorMode === 'dark' ? 'gray.800' : 'gray.100',
-        color: colorMode === 'dark' ? 'white' : 'black',
-        fontSize: '1.2rem',
+        h: '4rem'
+      }
+    }
+  },
+  variants: {
+    'global-search': () => ({
+      field: {
+        border: '1px solid',
+        borderColor: 'gray.500',
+        boxShadow: 'none',
+        borderRadius: 'xl',
+        fontSize: '1.4rem',
+        bgColor: 'transparent',
+        color: 'white',
+        py: '1.2rem',
+        px: '1.4rem',
         pl: 0,
         _placeholder: {
           color: 'gray.400'
@@ -24,7 +32,7 @@ export default defineStyleConfig({
         },
         _focus: {
           boxShadow: 'none',
-          borderColor: 'transparent'
+          borderColor: 'gray.200'
         }
       }
     }),

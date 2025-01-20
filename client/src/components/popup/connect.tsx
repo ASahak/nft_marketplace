@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useCallback, useEffect, useRef } from 'react'
+import { memo, ReactNode, useCallback, useEffect, useRef } from 'react'
 import { Button, HStack, Icon } from '@chakra-ui/react'
 import { Connector, useAccount, useConnectors } from 'wagmi'
 import { ConnectorsWithTypes } from '@/enums/connectors'
@@ -12,7 +12,7 @@ import {
 } from '@/components/icons'
 import { usePopup } from '@/providers/popupProvider'
 
-function Connect() {
+export const Connect = memo(() => {
   const { isConnected, isDisconnected, isConnecting } = useAccount()
   const connectors = useConnectors()
   const { onClose } = usePopup()
@@ -81,6 +81,4 @@ function Connect() {
       ))}
     </HStack>
   )
-}
-
-export default Connect
+})
