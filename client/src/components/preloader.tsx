@@ -3,7 +3,7 @@
 import { Box } from '@chakra-ui/react'
 import { Spinner } from '@/components/icons'
 
-export const RouteLoading = () => (
+export const Preloader = (props: Record<string, any>) => (
   <Box
     position="fixed"
     h="100vh"
@@ -15,6 +15,7 @@ export const RouteLoading = () => (
     alignItems="center"
     justifyContent="center"
     backdropFilter="blur(2px)"
+    {...props}
   >
     <Spinner
       w="50px"

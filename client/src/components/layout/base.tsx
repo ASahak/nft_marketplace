@@ -2,7 +2,8 @@
 
 import { usePathname } from 'next/navigation'
 import { Flex } from '@chakra-ui/react'
-import { Header, RouterTransition } from '@/components'
+import { Header, Preloader, RouterTransition } from '@/components'
+import { isClient } from '@/utils/helpers/global'
 
 type IProps = {
   children: React.ReactNode
@@ -11,10 +12,13 @@ function BaseLayout({ children }: IProps) {
   const pathname = usePathname()
 
   return (
-    <Flex flexDirection="column" minH="full">
-      <Header />
-      <RouterTransition routerName={pathname}>{children}</RouterTransition>
-    </Flex>
+    <>
+      {!isClient && <Preloader bgColor="gray.800" />}
+      <Flex flexDirection="column" minH="full">
+        <Header />
+        <RouterTransition routerName={pathname}>{children}</RouterTransition>
+      </Flex>
+    </>
   )
 }
 

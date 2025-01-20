@@ -23,9 +23,11 @@ import {
   PopoverContent,
   PopoverTrigger,
   Text,
+  useBreakpointValue,
   useDisclosure
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
+import { isMobile } from 'react-device-detect'
 import { RxChevronDown, RxCross1, RxTextAlignRight } from 'react-icons/rx'
 import ROUTE_PATHS, { NAV_ITEMS } from '@/utils/constants/routes'
 import RouterLink from 'next/link'
@@ -117,6 +119,10 @@ const NavbarDesktop = memo(() => {
 
 const NavbarMobile = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const isMobileMD = useBreakpointValue(
+    { base: true, md: false },
+    { ssr: true }
+  )
 
   return (
     <>
@@ -135,7 +141,7 @@ const NavbarMobile = memo(() => {
           <DrawerHeader borderBottomWidth="1px" py={HeaderPY}>
             <Flex alignItems="center" justifyContent="space-between">
               <Link as={RouterLink} href={ROUTE_PATHS.DASHBOARD}>
-                <Logo />
+                <Logo mini={isMobile || isMobileMD} />
               </Link>
               <Button
                 variant="outline"

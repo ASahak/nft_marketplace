@@ -14,6 +14,10 @@ export const Header = memo(() => {
     { base: true, lg: false },
     { ssr: true }
   )
+  const isMobileMD = useBreakpointValue(
+    { base: true, md: false },
+    { ssr: true }
+  )
 
   return (
     <Box
@@ -37,7 +41,7 @@ export const Header = memo(() => {
         <>
           <Flex gap={20}>
             <Link as={RouterLink} href={ROUTE_PATHS.DASHBOARD}>
-              <Logo />
+              <Logo mini={isMobile || isMobileMD} />
             </Link>
             {!isMobileLG && !isMobile ? <Navbar.Desktop /> : null}
           </Flex>
