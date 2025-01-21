@@ -16,6 +16,7 @@ import { GlobalSearch } from './globalSearch'
 import { POPUP_TYPE } from '@/utils/constants/popup'
 import { usePopup } from '@/hooks'
 
+export const POPUP_PADDING = '2.4rem'
 function Popup() {
   const overlayColor = useColorModeValue(
     'var(--chakra-colors-blackAlpha-600)',
@@ -59,7 +60,7 @@ function Popup() {
       <ModalOverlay bg={overlayColor} backdropFilter="blur(2px)" />
       <ModalContent
         ref={modalRef}
-        p="2.4rem"
+        p={POPUP_PADDING}
         borderRadius="xl"
         mt={popupSettings.placementTop ? '10rem' : 'auto'}
         bg="gray.700"

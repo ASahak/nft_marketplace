@@ -9,10 +9,11 @@ import {
   InputLeftElement
 } from '@chakra-ui/react'
 import { RxMagnifyingGlass } from 'react-icons/rx'
+import { POPUP_PADDING } from '@/components/popup'
 
 export const GlobalSearch = memo(() => {
   return (
-    <Box w="calc(80vw - 2.4rem)">
+    <Box w={`calc(80vw - ${POPUP_PADDING})`}>
       <InputGroup>
         <InputLeftElement pointerEvents="none" h="full" w="4rem">
           <Icon as={RxMagnifyingGlass} color="gray.300" fontSize="2rem" />

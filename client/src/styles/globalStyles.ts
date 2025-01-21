@@ -6,10 +6,10 @@ export default {
       '--toast-z-index': theme.zIndices.toast
     },
     html: {
-      fontSize: '10px',
-      [`@media only screen and (min-width: ${props.theme.breakpoints['4xl']})`]:
+      fontSize: '8px',
+      [`@media only screen and (min-width: ${props.theme.breakpoints['lg']})`]:
         {
-          fontSize: '18px'
+          fontSize: '10px'
         }
     },
     'body *': {

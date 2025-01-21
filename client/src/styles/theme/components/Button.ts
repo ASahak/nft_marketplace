@@ -40,48 +40,6 @@ export default defineStyleConfig({
       w: 'auto',
       p: 0
     },
-    'popover-btn': ({ colorMode }) => ({
-      fontFamily: 'Montserrat, sans-serif',
-      fontWeight: '500',
-      color: colorMode === 'dark' ? '#A4AAB7' : '#747D8B',
-      bgColor: 'transparent',
-      borderColor: colorMode === 'dark' ? '#25272D' : '#E3E5E8',
-      border: '1px solid',
-      rounded: '0.8rem',
-      h: '4rem',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      fontSize: '1.4rem',
-      _hover: {
-        bgColor: 'transparent',
-        borderColor: colorMode === 'dark' ? '#1A60FA' : '#4B82FB'
-      },
-      _active: {
-        bgColor: 'transparent',
-        borderColor: colorMode === 'dark' ? '#1A60FA' : '#4B82FB',
-        _hover: {
-          borderColor: colorMode === 'dark' ? '#1A60FA' : '#4B82FB'
-        }
-      },
-      _focus: {
-        boxShadow: '0px 0px 0px 1px transparent',
-        outline:
-          colorMode === 'dark'
-            ? '1px solid #4B82FB'
-            : '1px solid var(--chakra-colors-blue-300)'
-      },
-      _disabled: {
-        opacity: 1,
-        borderColor:
-          colorMode === 'dark' ? '#373A43 !important' : '#E3E5E8 !important',
-        color:
-          colorMode === 'dark' ? '#373A43 !important' : '#AFB4BC !important'
-      },
-      _invalid: {
-        borderColor: colorMode === 'dark' ? '#DD2C8A' : '#DF4937'
-      }
-    }),
     primary: ({ colorMode }) => ({
       fontFamily: 'Montserrat, sans-serif',
       fontWeight: '600',
@@ -116,17 +74,18 @@ export default defineStyleConfig({
     outline: {
       fontFamily: 'Montserrat, sans-serif',
       fontWeight: '600',
-      border: 'none',
-      borderColor: '',
+      border: '1px solid',
+      borderColor: 'gray.560',
       color: 'gray.200',
-      bgColor: 'gray.560',
+      bgColor: 'transparent',
       h: 'auto',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       lineHeight: '20px',
       _hover: {
-        bgColor: 'gray.550'
+        borderColor: 'gray.500',
+        bgColor: 'transparent'
       },
       _active: {
         bgColor: 'gray.550'

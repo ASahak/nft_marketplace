@@ -193,7 +193,7 @@ const NavbarMobile = memo(() => {
                           <AccordionIcon />
                         </AccordionButton>
                         <AccordionPanel
-                          pb={4}
+                          pb={2}
                           motionProps={{ unmountOnExit: true }}
                         >
                           <List spacing={4}>
