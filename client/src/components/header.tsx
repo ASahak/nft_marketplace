@@ -39,7 +39,7 @@ export const Header = memo(() => {
       top={0}
       as="header"
       w="full"
-      bgColor="#1e2024e0s"
+      bgColor="#1e2024e0"
       borderBottom={1}
       borderColor="gray.600"
       borderStyle={'solid'}
