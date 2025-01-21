@@ -23,7 +23,6 @@ function BaseLayout({ children }: IProps) {
   return (
     <>
       <CustomScrollbar
-        disableOnMobile
         style={{ height: '100%' }}
         autoHeight
         autoHeightMin="100%"
