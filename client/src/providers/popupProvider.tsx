@@ -6,6 +6,7 @@ import { useStateWithCallback } from '@/hooks'
 
 export interface PopupSettingsType {
   hideCloseIcon?: boolean
+  placementTop?: boolean
   modalBodyProps?: ChakraProps
 }
 
@@ -35,6 +36,7 @@ export const PopupContext = createContext<PopupContextType>({
   popupData: {},
   popupSettings: {
     hideCloseIcon: false,
+    placementTop: false,
     modalBodyProps: {}
   },
   popupType: '',

@@ -237,3 +237,5 @@ const NavbarMobile = memo(() => {
 
 Navbar.Desktop = NavbarDesktop
 Navbar.Mobile = NavbarMobile
+
+export { NavbarDesktop, NavbarMobile }

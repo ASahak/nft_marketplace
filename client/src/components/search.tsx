@@ -23,7 +23,12 @@ export const Search = memo(() => {
   )
 
   const onOpenMobileSearch = () => {
-    openPopup(POPUP_TYPE.GLOBAL_SEARCH, '', {}, { hideCloseIcon: true })
+    openPopup(
+      POPUP_TYPE.GLOBAL_SEARCH,
+      '',
+      {},
+      { hideCloseIcon: true, placementTop: true }
+    )
   }
 
   return (

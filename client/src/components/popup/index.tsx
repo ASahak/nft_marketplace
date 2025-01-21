@@ -48,7 +48,7 @@ function Popup() {
     <Modal
       initialFocusRef={modalRef as unknown as never}
       key={motionPreset}
-      isCentered
+      isCentered={!popupSettings.placementTop}
       isOpen={isOpen}
       onClose={onClose}
       size="3xl"
@@ -61,6 +61,7 @@ function Popup() {
         ref={modalRef}
         p="2.4rem"
         borderRadius="xl"
+        mt={popupSettings.placementTop ? '10rem' : 'auto'}
         bg="gray.700"
         w={{
           xs: 'calc(100% - 1.6rem)',

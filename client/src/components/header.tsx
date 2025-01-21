@@ -4,9 +4,22 @@ import { memo } from 'react'
 import RouterLink from 'next/link'
 import { Box, Flex, Link, useBreakpointValue } from '@chakra-ui/react'
 import { isMobile } from 'react-device-detect'
-import { Container, ConnectButton, Search, Navbar } from '@/components'
+import { Container, ConnectButton, Search } from '@/components'
 import { Logo } from '@/components/icons'
 import ROUTE_PATHS from '@/utils/constants/routes'
+import dynamic from 'next/dynamic'
+const NavbarDesktop: any = dynamic(
+  () => import('../components/navbar').then((r) => r.NavbarDesktop),
+  {
+    loading: () => null
+  }
+)
+const NavbarMobile: any = dynamic(
+  () => import('../components/navbar').then((r) => r.NavbarMobile),
+  {
+    loading: () => null
+  }
+)
 
 export const HeaderPY = { base: '1.2rem', md: '1.6rem' }
 export const Header = memo(() => {
@@ -43,7 +56,7 @@ export const Header = memo(() => {
             <Link as={RouterLink} href={ROUTE_PATHS.DASHBOARD}>
               <Logo mini={isMobile || isMobileMD} />
             </Link>
-            {!isMobileLG && !isMobile ? <Navbar.Desktop /> : null}
+            {!isMobileLG && !isMobile ? <NavbarDesktop /> : null}
           </Flex>
           <Flex gap={4}>
             <Search />
@@ -51,7 +64,7 @@ export const Header = memo(() => {
               borderRadius="0.8rem"
               p={{ base: '1.2rem', md: '1.2rem 1.6rem ' }}
             />
-            {isMobile || isMobileLG ? <Navbar.Mobile /> : null}
+            {isMobile || isMobileLG ? <NavbarMobile /> : null}
           </Flex>
         </>
       </Container>

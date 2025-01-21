@@ -12,7 +12,7 @@ import { RxMagnifyingGlass } from 'react-icons/rx'
 
 export const GlobalSearch = memo(() => {
   return (
-    <Box w="min(40rem, 60vw)">
+    <Box w="calc(80vw - 2.4rem)">
       <InputGroup>
         <InputLeftElement pointerEvents="none" h="full" w="4rem">
           <Icon as={RxMagnifyingGlass} color="gray.300" fontSize="2rem" />

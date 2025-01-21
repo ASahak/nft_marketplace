@@ -135,6 +135,23 @@ export default defineStyleConfig({
         boxShadow: '0px 0px 0px 1px transparent'
       }
     },
+    connect: () => ({
+      fontSize: '1.3rem',
+      fontFamily: 'Montserrat, sans-serif',
+      fontWeight: '600',
+      bg: 'gray.600',
+      border: 'none',
+      rounded: '1.2rem',
+      display: 'flex',
+      color: 'white',
+      justifyContent: 'flex-start',
+      h: 'auto',
+      p: '1.2rem',
+      gap: '1.2rem',
+      _hover: {
+        bgColor: 'gray.560'
+      }
+    }),
     text: ({ colorMode }) => ({
       fontFamily: 'Montserrat, sans-serif',
       fontWeight: '600',
