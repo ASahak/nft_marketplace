@@ -8,14 +8,14 @@ import { Container, ConnectButton, Search } from '@/components'
 import { Logo } from '@/components/icons'
 import ROUTE_PATHS from '@/utils/constants/routes'
 import dynamic from 'next/dynamic'
-const NavbarDesktop: any = dynamic(
-  () => import('../components/navbar').then((r) => r.NavbarDesktop),
+const NavbarDesktop = dynamic(
+  () => import('@/components/navbar').then((r) => r.NavbarDesktop),
   {
     loading: () => null
   }
 )
-const NavbarMobile: any = dynamic(
-  () => import('../components/navbar').then((r) => r.NavbarMobile),
+const NavbarMobile = dynamic(
+  () => import('@/components/navbar').then((r) => r.NavbarMobile),
   {
     loading: () => null
   }
@@ -39,10 +39,11 @@ export const Header = memo(() => {
       top={0}
       as="header"
       w="full"
-      bgColor="gray.700"
+      bgColor="#1e2024e0s"
       borderBottom={1}
       borderColor="gray.600"
       borderStyle={'solid'}
+      backdropFilter="blur(5px)"
     >
       <Container
         py={HeaderPY}

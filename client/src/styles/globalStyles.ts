@@ -24,6 +24,20 @@ export default {
     '.w-full': {
       width: '100%'
     },
+    // Custom scrollbar
+    '.increase-height-hover': {
+      transition: 'width .1s',
+      '&:hover, &:active': {
+        width: '.8rem !important'
+      }
+    },
+    '.increase-width-hover': {
+      transition: 'height .1s',
+      '&:hover, &:active': {
+        height: '.8rem !important'
+      }
+    },
+    // _________
     '.sr-only': {
       border: '0 !important',
       clip: 'rect(1px, 1px, 1px, 1px) !important',

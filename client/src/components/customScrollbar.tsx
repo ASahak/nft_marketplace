@@ -1,147 +1,157 @@
 'use client'
 
 import {
+  memo,
+  type PropsWithChildren,
+  useCallback,
   useEffect,
   useRef,
-  useState,
-  memo,
-  useCallback,
-  forwardRef,
-  useImperativeHandle,
-  ReactNode
+  useState
 } from 'react'
-import { useMeasure } from 'react-use'
 import { Scrollbars } from 'react-custom-scrollbars-2'
 import { isMobile } from 'react-device-detect'
 import { Box } from '@chakra-ui/react'
+import { useMeasure } from 'react-use'
+import { EVENT_BUS, UI_SCROLLBAR_SIZE } from '@/utils/constants/global'
+import { dispatchBus, useBus } from '@/hooks'
 
-interface CustomScrollbarProps {
-  children: ReactNode
-  renderTrackVerticalStyle?: React.CSSProperties
-  renderTrackHorizontal?: React.CSSProperties
+interface IProps extends PropsWithChildren, Record<string, any> {
   disableOnMobile?: boolean
-  autoHideX?: boolean
-  [key: string]: any
-}
-
-interface CustomScrollbarRef {
-  getScrollRef: () => Scrollbars | null
+  scrollBarOffset?: { y?: string; x?: string }
+  scrollBusKey?: keyof typeof EVENT_BUS
+  renderTrackVerticalStyle?: Record<string, any>
+  renderTrackHorizontalStyle?: Record<string, any>
 }
 
 export const CustomScrollbar = memo(
-  forwardRef<CustomScrollbarRef, CustomScrollbarProps>(
-    (
-      {
-        children,
-        renderTrackVerticalStyle,
-        renderTrackHorizontal,
-        disableOnMobile = false,
-        autoHideX = true,
-        ...rest
-      },
-      ref
-    ) => {
-      const [scrollRef, { width, height }] = useMeasure<HTMLDivElement>()
-      const scrollBarRef = useRef<Scrollbars | null>(null)
-      const [scrollAble, setScrollAble] = useState({ x: false, y: false })
+  ({
+    children,
+    renderTrackVerticalStyle,
+    renderTrackHorizontalStyle,
+    disableOnMobile,
+    scrollBusKey,
+    scrollBarOffset,
+    ...rest
+  }: IProps) => {
+    const [scrollRef, { width, height }] = useMeasure()
+    const scrollBarRef = useRef<Scrollbars | null>(null)
+    const [scrollAble, setScrollAble] = useState({ x: false, y: false })
 
-      const scrollBarRefCb = useCallback(
-        (node: Scrollbars | null) => {
-          scrollBarRef.current = node
-          if (node !== null) {
-            scrollRef(node.container)
-          }
-        },
-        [scrollRef]
-      )
-
-      useImperativeHandle(
-        ref,
-        () => ({
-          getScrollRef: () => scrollBarRef.current
-        }),
-        []
-      )
-
-      useEffect(() => {
+    useBus(
+      EVENT_BUS.reCalcScrollbar,
+      () => {
         if (scrollBarRef.current) {
-          setScrollAble({
-            y:
-              scrollBarRef.current.getScrollHeight() >
-              scrollBarRef.current.getClientHeight(),
-            x:
-              scrollBarRef.current.getScrollWidth() >
-              scrollBarRef.current.getClientWidth()
-          })
+          setScrollAble(computeScrollAbility())
         }
-      }, [width, height])
+      },
+      []
+    )
 
-      return isMobile && disableOnMobile ? (
-        <>{children}</>
-      ) : (
-        <Scrollbars
-          ref={scrollBarRefCb}
-          autoHide
-          renderThumbVertical={(props) => (
-            <Box
-              {...props}
-              className="increase-height-hover"
-              style={{
-                width: '.4rem',
-                borderRadius: '8px',
-                backgroundColor: 'var(--chakra-colors-brand-500)'
-              }}
-            />
-          )}
-          renderThumbHorizontal={(props) => (
-            <Box
-              {...props}
-              className="increase-width-hover"
-              style={{
-                borderRadius: '8px',
-                backgroundColor: 'var(--chakra-colors-brand-500)',
-                height: '.4rem'
-              }}
-            />
-          )}
-          renderTrackVertical={({ style, ...props }) => (
-            <Box
-              bg="gray.100"
-              style={{
-                ...style,
-                width: 'fit-content',
-                borderRadius: '10px',
-                height: scrollAble.y ? '100%' : 'auto',
-                zIndex: 99,
-                right: 0,
-                top: 0,
-                ...(renderTrackVerticalStyle ?? {})
-              }}
-              {...props}
-            />
-          )}
-          renderTrackHorizontal={({ style, ...props }) => (
-            <Box
-              bg="gray.100"
-              style={{
-                ...style,
-                height: 'fit-content',
-                borderRadius: '10px',
-                width: scrollAble.x ? '100%' : 'auto',
-                zIndex: 99,
-                left: 0,
-                bottom: 0,
-                ...(renderTrackHorizontal ?? {})
-              }}
-              {...(!autoHideX && { opacity: '1 !important' })}
-              {...props}
-            />
-          )}
-          {...rest}
-        >
-          {children}
-        </Scrollbars>
-      )
+    const scrollBarRefCb = useCallback((node: Scrollbars) => {
+      scrollBarRef.current = node
+      if (node !== null) {
+        scrollRef(node.container)
+      }
+    }, [])
+
+    const onScroll = () => {
+      if (
+        scrollBusKey &&
+        scrollBarRef.current &&
+        scrollBarRef.current instanceof Scrollbars
+      ) {
+        dispatchBus({
+          type: scrollBusKey,
+          payload: { scrollY: scrollBarRef.current.getScrollTop() }
+        })
+      }
     }
-  )
+
+    const computeScrollAbility = () => ({
+      y:
+        (scrollBarRef.current as Scrollbars).getScrollHeight() >
+        (scrollBarRef.current as Scrollbars).getClientHeight(),
+      x:
+        (scrollBarRef.current as Scrollbars).getScrollWidth() >
+        (scrollBarRef.current as Scrollbars).getClientWidth()
+    })
+
+    useEffect(() => {
+      if (scrollBarRef.current) {
+        setScrollAble(computeScrollAbility())
+      }
+    }, [width, height])
+
+    return isMobile && disableOnMobile ? (
+      children
+    ) : (
+      <Scrollbars
+        onScroll={onScroll}
+        ref={scrollBarRefCb}
+        autoHide
+        renderView={({ style, children }) => (
+          <Box style={style} pr={scrollBarOffset?.y || '0'}>
+            {children}
+          </Box>
+        )}
+        renderThumbVertical={(props) => (
+          <Box
+            {...props}
+            className="increase-height-hover"
+            style={{
+              width: UI_SCROLLBAR_SIZE,
+              borderRadius: '8px',
+              backgroundColor: 'var(--chakra-colors-gray-550)'
+            }}
+          />
+        )}
+        renderThumbHorizontal={(props) => (
+          <Box
+            {...props}
+            className="increase-width-hover"
+            style={{
+              borderRadius: '8px',
+              backgroundColor: 'var(--chakra-colors-gray-550)',
+              height: UI_SCROLLBAR_SIZE
+            }}
+          />
+        )}
+        renderTrackVertical={({ style, ...props }) => (
+          <Box
+            bg="transparent"
+            style={{
+              ...style,
+              width: 'fit-content',
+              borderRadius: '10px',
+              height: scrollAble.y ? '100%' : 'auto',
+              zIndex: 999,
+              right: 0,
+              top: 0,
+              ...(renderTrackVerticalStyle ?? {})
+            }}
+            {...props}
+          />
+        )}
+        renderTrackHorizontal={({ style, ...props }) => (
+          <Box
+            bg="transparent"
+            style={{
+              ...style,
+              height: 'fit-content',
+              borderRadius: '10px',
+              width: scrollAble.x ? '100%' : 'auto',
+              zIndex: 999,
+              left: 0,
+              bottom: 0,
+              ...(renderTrackHorizontalStyle ?? {})
+            }}
+            {...props}
+          />
+        )}
+        {...rest}
+      >
+        {children}
+      </Scrollbars>
+    )
+  }
 )

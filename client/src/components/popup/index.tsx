@@ -57,7 +57,7 @@ function Popup() {
       preserveScrollBarGap
       motionPreset={motionPreset as any}
     >
-      <ModalOverlay bg={overlayColor} backdropFilter="blur(2px)" />
+      <ModalOverlay bg={overlayColor} backdropFilter="blur(4px)" />
       <ModalContent
         ref={modalRef}
         p={POPUP_PADDING}
