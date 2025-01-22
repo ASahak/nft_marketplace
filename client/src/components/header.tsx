@@ -54,7 +54,11 @@ export const Header = memo(() => {
       >
         <>
           <Flex gap={20}>
-            <Link as={RouterLink} href={ROUTE_PATHS.DASHBOARD}>
+            <Link
+              as={RouterLink}
+              href={ROUTE_PATHS.DASHBOARD}
+              aria-label="Logo"
+            >
               <Logo mini={isMobile || isMobileMD} />
             </Link>
             {!isMobileLG && !isMobile ? <NavbarDesktop /> : null}

@@ -1,3 +1,5 @@
+'use client'
+
 import React, { memo } from 'react'
 import {
   Flex,
@@ -16,7 +18,7 @@ export const Hero = memo(() => {
   return (
     <Container zIndex={1}>
       <Grid
-        py="8rem"
+        py={{ base: '6rem', lg: '10rem' }}
         w="full"
         position="relative"
         gridTemplateColumns={{ base: '1fr', lg: '1fr .9fr', xl: '1fr 1fr' }}

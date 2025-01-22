@@ -10,5 +10,7 @@ export const NAV_ITEMS = [
 ]
 
 export default {
-  DASHBOARD: '/'
+  DASHBOARD: '/',
+  COLLECTIONS: '/collections',
+  COLLECTION: '/collection/{id}'
 }

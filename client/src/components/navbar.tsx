@@ -67,6 +67,7 @@ const NavbarDesktop = memo(() => {
             >
               <PopoverTrigger>
                 <Text
+                  aria-hidden="true"
                   h="full"
                   fontSize="1.5rem"
                   color="gray.300"

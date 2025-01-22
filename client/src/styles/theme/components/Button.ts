@@ -40,11 +40,11 @@ export default defineStyleConfig({
       w: 'auto',
       p: 0
     },
-    primary: ({ colorMode }) => ({
+    primary: {
       fontFamily: 'Montserrat, sans-serif',
       fontWeight: '600',
-      color: colorMode === 'dark' ? '#F4F4F6' : 'white',
-      bgColor: colorMode === 'dark' ? '#4B82FB' : 'blue.300',
+      color: 'gray.100',
+      bgColor: 'blue.250',
       rounded: '0.6rem',
       h: 'auto',
       display: 'flex',
@@ -52,25 +52,21 @@ export default defineStyleConfig({
       alignItems: 'center',
       border: 'none',
       _hover: {
-        bg: colorMode === 'dark' ? '#1A60FA' : 'blue.500'
+        bg: 'blue.350'
       },
       _active: {
-        bg: colorMode === 'dark' ? '#0441C8' : 'blue.700'
+        bg: 'blue.450'
       },
       _focus: {
         boxShadow: '0px 0px 0px 1px transparent',
-        outline:
-          colorMode === 'dark'
-            ? '1px solid #4B82FB'
-            : '1px solid var(--chakra-colors-blue-300)'
+        outline: '1px solid var(--chakra-colors-blue-250)'
       },
       _disabled: {
         opacity: 1,
-        bg: colorMode === 'dark' ? '#373A43 !important' : '#AFB4BC !important',
-        color:
-          colorMode === 'dark' ? '#191B1F !important' : '#E3E5E8 !important'
+        bg: 'var(--chakra-colors-blue-550) !important',
+        color: 'var(--chakra-colors-blue-800) !important'
       }
-    }),
+    },
     outline: {
       fontFamily: 'Montserrat, sans-serif',
       fontWeight: '600',
