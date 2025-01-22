@@ -4,6 +4,8 @@ import { Flex } from '@chakra-ui/react'
 import { headers } from 'next/headers'
 import { RootProvider } from '@/providers'
 import BaseLayout from '@/components/layout/base'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 export const metadata: Metadata = {
   title: 'NFT Marketplace',

@@ -6,7 +6,7 @@ export default {
       '--toast-z-index': theme.zIndices.toast
     },
     html: {
-      fontSize: '8px',
+      fontSize: '9px',
       [`@media only screen and (min-width: ${props.theme.breakpoints['lg']})`]:
         {
           fontSize: '10px'
@@ -23,6 +23,15 @@ export default {
     },
     '.w-full': {
       width: '100%'
+    },
+    '.collection-slider': {
+      '& .slick-slide > div': {
+        padding: '0 1rem'
+      },
+      '& .slick-list': {
+        padding: '0.5rem 0',
+        margin: '0 -1rem'
+      }
     },
     // Custom scrollbar
     '.increase-height-hover': {

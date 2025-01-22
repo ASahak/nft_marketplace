@@ -1,13 +1,8 @@
+'use client'
+
 import React, { memo } from 'react'
-import {
-  VStack,
-  Box,
-  Grid,
-  GridItem,
-  Heading,
-  Text,
-  Image
-} from '@chakra-ui/react'
+import { VStack, Box, Grid, GridItem, Text } from '@chakra-ui/react'
+import NextImage from 'next/image'
 import { Container } from '@/components'
 
 export const Steps = memo(() => {
@@ -27,8 +22,21 @@ export const Steps = memo(() => {
         >
           <GridItem>
             <VStack spacing={6} w="full">
-              <Image w="5rem" src="/images/wallet.svg" alt="Set up wallet" />
-              <Heading as="h3">Set Up Your Wallet</Heading>
+              <Box position="relative" w="5rem" h="5rem" overflow="hidden">
+                <NextImage
+                  src="/images/wallet.svg"
+                  alt="Set up wallet"
+                  fill
+                  sizes="50px"
+                  priority
+                  style={{
+                    objectFit: 'cover'
+                  }}
+                />
+              </Box>
+              <Text fontSize="2.25rem" fontWeight={600}>
+                Set Up Your Wallet
+              </Text>
               <Text color="gray.300" fontSize="1.5rem" textAlign="center">
                 The First Step to Owning NFTs: Set Up Your Wallet for a Smooth
                 Start
@@ -37,8 +45,21 @@ export const Steps = memo(() => {
           </GridItem>
           <GridItem>
             <VStack spacing={6} w="full">
-              <Image w="5rem" src="/images/cards.svg" alt="Create collection" />
-              <Heading as="h3">Create Your Collection</Heading>
+              <Box position="relative" w="5rem" h="5rem" overflow="hidden">
+                <NextImage
+                  src="/images/cards.svg"
+                  alt="Create collection"
+                  fill
+                  sizes="50px"
+                  priority
+                  style={{
+                    objectFit: 'cover'
+                  }}
+                />
+              </Box>
+              <Text fontSize="2.25rem" fontWeight={600}>
+                Create Your Collection
+              </Text>
               <Text color="gray.300" fontSize="1.5rem" textAlign="center">
                 Design a Collection That Tells Your Story in the NFT World
               </Text>
@@ -46,8 +67,21 @@ export const Steps = memo(() => {
           </GridItem>
           <GridItem>
             <VStack spacing={6} w="full">
-              <Image w="5rem" src="/images/asset.svg" alt="Add nfts" />
-              <Heading as="h3">Add Your NFTs</Heading>
+              <Box position="relative" w="5rem" h="5rem" overflow="hidden">
+                <NextImage
+                  src="/images/asset.svg"
+                  alt="Add nfts"
+                  fill
+                  sizes="50px"
+                  priority
+                  style={{
+                    objectFit: 'cover'
+                  }}
+                />
+              </Box>
+              <Text fontSize="2.25rem" fontWeight={600}>
+                Add Your NFTs
+              </Text>
               <Text color="gray.300" fontSize="1.5rem" textAlign="center">
                 Bring Your Digital Assets to Life by Adding Your NFTs
               </Text>
@@ -55,8 +89,21 @@ export const Steps = memo(() => {
           </GridItem>
           <GridItem>
             <VStack spacing={6} w="full">
-              <Image w="5rem" src="/images/sale.svg" alt="Sale" />
-              <Heading as="h3">List Them For Sale</Heading>
+              <Box position="relative" w="5rem" h="5rem" overflow="hidden">
+                <NextImage
+                  src="/images/sale.svg"
+                  alt="Sale"
+                  fill
+                  sizes="50px"
+                  priority
+                  style={{
+                    objectFit: 'cover'
+                  }}
+                />
+              </Box>
+              <Text fontSize="2.25rem" fontWeight={600}>
+                List Them For Sale
+              </Text>
               <Text color="gray.300" fontSize="1.5rem" textAlign="center">
                 Launch Your NFTs into the Marketplace and Watch Them Thrive
               </Text>
