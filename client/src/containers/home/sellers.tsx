@@ -15,20 +15,19 @@ import Slider from 'react-slick'
 import NextLink from 'next/link'
 import { isMobile } from 'react-device-detect'
 import { RxChevronRight, RxChevronLeft } from 'react-icons/rx'
-import { CollectionCard, Container } from '@/components'
-import { CollectionType } from '@/types/collection'
+import { SellerCard, Container } from '@/components'
+import { SellerType } from '@/types/seller'
 import ROUTE_PATHS from '@/utils/constants/routes'
 
 type IProps = {
-  list: CollectionType[]
+  list: SellerType[]
 }
-const MAX_SLIDES = 5
-export const Collections = ({ list }: IProps) => {
+const MAX_SLIDES = 4
+export const Sellers = ({ list }: IProps) => {
   const slidesToShow: number = useBreakpointValue({
     base: 1,
     sm: 2,
-    md: 3,
-    lg: 4,
+    lg: 3,
     xl: MAX_SLIDES
   }) as number
   const sliderRef = useRef(null)
@@ -80,14 +79,10 @@ export const Collections = ({ list }: IProps) => {
       <Container>
         <Flex justifyContent="space-between" alignItems="center" gap={4}>
           <Heading as="h1" variant="underline">
-            Top Collections
+            Top Sellers
           </Heading>
           <Flex gap={6} alignItems="center">
-            <Link
-              as={NextLink}
-              href={ROUTE_PATHS.COLLECTIONS}
-              fontSize="1.4rem"
-            >
+            <Link as={NextLink} href={ROUTE_PATHS.SELLERS} fontSize="1.4rem">
               See all
             </Link>
             {slidesToShow < MAX_SLIDES ? renderArrows() : null}
@@ -106,7 +101,7 @@ export const Collections = ({ list }: IProps) => {
           afterChange={afterChange}
         >
           {list.map((c) => (
-            <CollectionCard key={c.id} data={c} />
+            <SellerCard key={c.id} data={c} />
           ))}
         </HStack>
       </Container>

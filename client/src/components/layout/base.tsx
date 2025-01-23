@@ -3,7 +3,14 @@
 import { usePathname } from 'next/navigation'
 import { Flex } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
-import { Header, Preloader, RouterTransition, RouterMotion } from '@/components'
+import { useWindowSize } from 'react-use'
+import {
+  Header,
+  Preloader,
+  RouterTransition,
+  RouterMotion,
+  Footer
+} from '@/components'
 import { useIsClient } from '@/hooks'
 const CustomScrollbar = dynamic(
   () => import('@/components/customScrollbar').then((m) => m.CustomScrollbar),
@@ -19,6 +26,7 @@ type IProps = {
 function BaseLayout({ children }: IProps) {
   const pathname = usePathname()
   const isClient = useIsClient()
+  const { height } = useWindowSize()
 
   return (
     <>
@@ -29,11 +37,20 @@ function BaseLayout({ children }: IProps) {
         autoHeightMax="100%"
       >
         <Flex flexDirection="column" minH="full">
-          <RouterMotion keyProp={isClient.toString()}>
+          <RouterMotion
+            keyProp={isClient.toString()}
+            style={{
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              minHeight: height
+            }}
+          >
             <Header />
             <RouterTransition routerName={pathname} disableMotionOnMount>
               {children}
             </RouterTransition>
+            <Footer />
           </RouterMotion>
         </Flex>
       </CustomScrollbar>

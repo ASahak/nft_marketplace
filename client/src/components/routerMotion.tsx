@@ -14,7 +14,7 @@ export const RouterMotion = memo(
   ({ keyProp, children, transition, ...rest }: Record<string, any>) => {
     return (
       <LazyMotion features={domAnimation}>
-        <m.main
+        <m.div
           key={keyProp}
           initial="initial"
           animate="in"
@@ -23,7 +23,7 @@ export const RouterMotion = memo(
           {...rest}
         >
           {children}
-        </m.main>
+        </m.div>
       </LazyMotion>
     )
   }

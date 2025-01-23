@@ -7,7 +7,7 @@ import { Container } from '@/components'
 
 export const Steps = memo(() => {
   return (
-    <Box bgColor="gray.700">
+    <Box bgColor="gray.700" w="full">
       <Container zIndex={1}>
         <Grid
           py="6rem"

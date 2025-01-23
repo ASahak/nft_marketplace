@@ -29,6 +29,7 @@ export default {
         padding: '0 1rem'
       },
       '& .slick-list': {
+        width: 'calc(100% + 2rem)',
         padding: '0.5rem 0',
         margin: '0 -1rem'
       }

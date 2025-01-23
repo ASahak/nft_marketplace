@@ -4,18 +4,19 @@ export const Logo = ({ mini }: { mini?: boolean }) => {
       data-v-0dd9719b=""
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      width={mini ? '75' : '180'}
+      width={mini ? '75' : '160'}
       height="50"
       viewBox={mini ? '0 0 150 100' : '0 0 300 100'}
       preserveAspectRatio="xMidYMid meet"
       colorInterpolationFilters="sRGB"
-      style={{ margin: 'auto' }}
     >
       <g
         data-v-0dd9719b=""
         fill="#333"
         className="icon-text-wrapper icon-svg-group iconsvg"
-        style={{ transform: 'scale(2.5)' }}
+        style={{
+          transform: mini ? 'scale(2.5)' : 'scale(2.5) translateX(-4px)'
+        }}
       >
         <g className="iconsvg-imagesvg">
           <g>

@@ -1,11 +1,6 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
-import { Flex } from '@chakra-ui/react'
-import { headers } from 'next/headers'
-import { RootProvider } from '@/providers'
-import BaseLayout from '@/components/layout/base'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import { ChakraProvider } from '@/providers'
 
 export const metadata: Metadata = {
   title: 'NFT Marketplace',
@@ -16,21 +11,15 @@ export const metadata: Metadata = {
   robots: 'index, follow'
 }
 
-export default async function RootLayout({
+export default async function Layout({
   children
 }: Readonly<{
   children: ReactNode
 }>) {
-  const wagmiCookie = (await headers()).get('cookie')
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <RootProvider wagmiCookie={wagmiCookie}>
-          <Flex direction="column" h="100vh" id="app" overflow="hidden">
-            <BaseLayout>{children}</BaseLayout>
-          </Flex>
-        </RootProvider>
+        <ChakraProvider>{children}</ChakraProvider>
       </body>
     </html>
   )
