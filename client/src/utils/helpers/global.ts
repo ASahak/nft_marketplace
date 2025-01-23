@@ -22,7 +22,7 @@ export const toHumanReadableSmallNumbers = (
       return value as string
     }
 
-    // Create a BigNumber instance
+    // Page a BigNumber instance
     const bigNum = new BigNumber(value)
 
     // Convert to fixed-point notation with sufficient precision
