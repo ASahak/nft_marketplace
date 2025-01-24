@@ -24,6 +24,9 @@ export default {
     '.w-full': {
       width: '100%'
     },
+    '.h-full': {
+      height: '100%'
+    },
     '.collection-slider': {
       '& .slick-slide > div': {
         padding: '0 1rem'

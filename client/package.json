@@ -28,6 +28,7 @@
     "react-custom-scrollbars-2": "^4.5.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "^19.0.0",
+    "react-dropzone": "^14.3.5",
     "react-icons": "^5.4.0",
     "react-no-ssr": "^1.1.0",
     "react-slick": "^0.30.3",

@@ -34,7 +34,11 @@ export const Create = () => {
     <NotConnected />
   ) : (
     <Container py={10}>
-      <Grid gridTemplateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={6}>
+      <Grid
+        gridTemplateColumns={{ base: '1fr', lg: '1fr 1fr' }}
+        gap={6}
+        h="full"
+      >
         <GridItem>
           <Preview />
         </GridItem>
