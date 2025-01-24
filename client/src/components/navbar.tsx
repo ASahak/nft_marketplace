@@ -1,6 +1,6 @@
 'use client'
 
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import {
   Accordion,
   AccordionButton,
@@ -26,6 +26,7 @@ import {
   useBreakpointValue,
   useDisclosure
 } from '@chakra-ui/react'
+import { usePathname } from 'next/navigation'
 import NextLink from 'next/link'
 import { isMobile } from 'react-device-detect'
 import { RxChevronDown, RxCross1, RxTextAlignRight } from 'react-icons/rx'
@@ -124,6 +125,13 @@ const NavbarMobile = memo(() => {
     { base: true, md: false },
     { ssr: true }
   )
+  const pathname = usePathname()
+
+  useEffect(() => {
+    if (isOpen) {
+      onClose()
+    }
+  }, [pathname])
 
   return (
     <>

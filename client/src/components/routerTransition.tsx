@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, type ReactNode, useEffect } from 'react'
+import { memo, type ReactNode, useEffect, useState } from 'react'
 import { Box } from '@chakra-ui/react'
 import { dispatchBus, useHash } from '@/hooks'
 import { RouterMotion } from '@/components'
@@ -16,6 +16,8 @@ export const RouterTransition = memo(
     disableMotionOnMount?: boolean
   }) => {
     const hash = useHash()
+    const [disableAnimation, setDisableAnimation] =
+      useState(disableMotionOnMount)
 
     const animationCompleted = () => {
       if (hash) {
@@ -29,10 +31,14 @@ export const RouterTransition = memo(
       animationCompleted()
     }, [routerName, hash])
 
+    useEffect(() => {
+      setDisableAnimation(false)
+    }, [])
+
     return (
       <RouterMotion
         keyProp={routerName}
-        transition={hash || disableMotionOnMount ? { duration: 0 } : null}
+        transition={hash || disableAnimation ? { duration: 0 } : null}
         style={{
           paddingBottom: '6rem',
           minHeight: '0',
