@@ -1,11 +1,10 @@
-'use client'
+import type { Metadata } from 'next'
+import { Create } from '@/containers/create'
 
-import { Box } from '@chakra-ui/react'
-import { useAccount } from 'wagmi'
-import { NotConnected } from '@/components'
+export const metadata: Metadata = {
+  title: 'Create NFT'
+}
 
-export default function Create() {
-  const connectedUser = useAccount()
-
-  return connectedUser.isDisconnected ? <NotConnected /> : <Box>Create</Box>
+export default function CreatePage() {
+  return <Create />
 }

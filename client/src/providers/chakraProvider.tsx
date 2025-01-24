@@ -9,7 +9,11 @@ import {
   ChakraProvider as _ChakraProvider
 } from '@chakra-ui/react'
 import { CacheProvider } from '@chakra-ui/next-js'
-import { HiCheckCircle, HiOutlineExclamationCircle } from 'react-icons/hi'
+import {
+  HiCheckCircle,
+  HiOutlineExclamationCircle,
+  HiOutlineExclamation
+} from 'react-icons/hi'
 import theme from '@/styles/theme'
 
 const colorScheme = (
@@ -44,6 +48,14 @@ const colorScheme = (
           />
         ),
         bgColor: '#41292A',
+        color: 'white'
+      }
+    case 'warning':
+      return {
+        icon: (
+          <Icon as={HiOutlineExclamation} fontSize="2.4rem" color="white" />
+        ),
+        bgColor: '#e87f32',
         color: 'white'
       }
     default:

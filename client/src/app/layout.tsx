@@ -3,7 +3,10 @@ import type { Metadata } from 'next'
 import { ChakraProvider } from '@/providers'
 
 export const metadata: Metadata = {
-  title: 'NFT Marketplace',
+  title: {
+    template: '%s | NFT Marketplace', // %s will be replaced by child route's title
+    default: 'NFT Marketplace' // Fallback title
+  },
   description:
     'Discover, buy, and sell unique digital assets on our cutting-edge NFT marketplace. Join a global community of creators and collectors.',
   keywords:

@@ -63,7 +63,7 @@ export const Collections = ({ list }: IProps) => {
           <Icon as={RxChevronLeft} fontSize="2rem" />
         </Button>
         <Button
-          isDisabled={sliderIndex === MAX_SLIDES}
+          isDisabled={sliderIndex === list.length}
           variant="unstyled"
           display="flex"
           onClick={() => goTo(1)}

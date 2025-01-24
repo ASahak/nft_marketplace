@@ -1,7 +1,7 @@
 'use client'
 
 import { memo, ReactNode, useCallback, useEffect, useMemo, useRef } from 'react'
-import { Button, HStack, Icon } from '@chakra-ui/react'
+import { Button, HStack, Icon, useToast } from '@chakra-ui/react'
 import { Connector, useAccount, useConnectors } from 'wagmi'
 import { ConnectorsWithTypes } from '@/enums/connectors'
 import {
@@ -11,12 +11,14 @@ import {
   Spinner
 } from '@/components/icons'
 import { usePopup } from '@/providers/popupProvider'
+import WalletConnectErrors from '@/utils/errors/walletConnect'
 
 export const Connect = memo(() => {
   const { isConnected, isDisconnected, isConnecting } = useAccount()
   const connectors = useConnectors()
   const { onClose } = usePopup()
   const disconnectedState = useRef(isDisconnected)
+  const toast = useToast()
 
   const filteredConnectors = useMemo(() => {
     const set = new Set()
@@ -43,16 +45,26 @@ export const Connect = memo(() => {
   }, [])
 
   const connectHandler = async (c: Connector) => {
-    if (c.type === ConnectorsWithTypes.METAMASK && isConnected) {
-      const provider = await c.getProvider()
-      await (provider as unknown as any).request({
-        method: 'wallet_requestPermissions',
-        params: [{ eth_accounts: {} }]
-      })
-      return
-    }
+    try {
+      if (c.type === ConnectorsWithTypes.METAMASK && isConnected) {
+        const provider = await c.getProvider()
+        await (provider as unknown as any).request({
+          method: 'wallet_requestPermissions',
+          params: [{ eth_accounts: {} }]
+        })
+        return
+      }
 
-    c.connect()
+      await c.connect()
+    } catch (err: any) {
+      console.log(err)
+      if (err.code === WalletConnectErrors.USER_REJECTED_REQUEST.code) {
+        toast({
+          title: WalletConnectErrors.USER_REJECTED_REQUEST.message,
+          status: 'warning'
+        })
+      }
+    }
   }
 
   useEffect(() => {
