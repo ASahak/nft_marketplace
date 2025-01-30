@@ -1,7 +1,15 @@
 'use client'
 
-import { memo, ReactNode, useCallback, useEffect, useMemo, useRef } from 'react'
-import { Button, HStack, Icon, useToast } from '@chakra-ui/react'
+import {
+  memo,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
+import { Box, Button, HStack, Icon, useToast } from '@chakra-ui/react'
 import { Connector, useAccount, useConnectors } from 'wagmi'
 import { ConnectorsWithTypes } from '@/enums/connectors'
 import {
@@ -16,6 +24,7 @@ import WalletConnectErrors from '@/utils/errors/walletConnect'
 export const Connect = memo(() => {
   const { isConnected, isDisconnected, isConnecting } = useAccount()
   const connectors = useConnectors()
+  const [connectorLoading, setConnectorLoading] = useState<string>('')
   const { onClose } = usePopup()
   const disconnectedState = useRef(isDisconnected)
   const toast = useToast()
@@ -31,21 +40,62 @@ export const Connect = memo(() => {
     })
   }, [connectors])
 
-  const getIcon = useCallback((type: ConnectorsWithTypes): ReactNode => {
-    switch (type) {
-      case ConnectorsWithTypes.METAMASK:
-        return <Icon w="4.8rem" h="4.8rem" as={MetamaskIcon} />
-      case ConnectorsWithTypes.WALLET_CONNECT:
-        return <Icon w="4.8rem" h="4.8rem" as={WalletConnectIcon} />
-      case ConnectorsWithTypes.COINBASE_WALLET:
-        return <Icon w="4.8rem" h="4.8rem" as={CoinbaseIcon} />
-      default:
-        return null
-    }
-  }, [])
+  const getIcon = useCallback(
+    (type: ConnectorsWithTypes): ReactNode => {
+      const isLoading = isConnecting || connectorLoading === type
+      switch (type) {
+        case ConnectorsWithTypes.METAMASK:
+          return (
+            <Box
+              height={isLoading ? '3.6rem' : '4.8rem'}
+              width={isLoading ? '3.6rem' : '4.8rem'}
+              transition=".1s"
+              willChange="width, height"
+            >
+              <Icon
+                as={MetamaskIcon.bind(null, { height: '100%', width: '100%' })}
+              />
+            </Box>
+          )
+        case ConnectorsWithTypes.WALLET_CONNECT:
+          return (
+            <Box
+              height={isLoading ? '3.8rem' : '4.8rem'}
+              width={isLoading ? '3.8rem' : '4.8rem'}
+              transition=".1s"
+              willChange="width, height"
+            >
+              <Icon
+                as={WalletConnectIcon.bind(null, {
+                  height: '100%',
+                  width: '100%'
+                })}
+              />
+            </Box>
+          )
+        case ConnectorsWithTypes.COINBASE_WALLET:
+          return (
+            <Box
+              height={isLoading ? '2.8rem' : '4.8rem'}
+              width={isLoading ? '2.8rem' : '4.8rem'}
+              transition=".1s"
+              willChange="width, height"
+            >
+              <Icon
+                as={CoinbaseIcon.bind(null, { height: '100%', width: '100%' })}
+              />
+            </Box>
+          )
+        default:
+          return null
+      }
+    },
+    [connectorLoading, isConnecting]
+  )
 
   const connectHandler = async (c: Connector) => {
     try {
+      setConnectorLoading(c.type)
       if (c.type === ConnectorsWithTypes.METAMASK && isConnected) {
         const provider = await c.getProvider()
         await (provider as unknown as any).request({
@@ -64,6 +114,8 @@ export const Connect = memo(() => {
           status: 'warning'
         })
       }
+    } finally {
+      setConnectorLoading('')
     }
   }
 
@@ -89,17 +141,20 @@ export const Connect = memo(() => {
           fontSize="1.6rem"
           onClick={() => connectHandler(c)}
           textAlign="center"
+          position="relative"
         >
-          {isConnecting ? (
-            <Spinner
-              w="30px"
-              h="30px"
-              size="4px"
-              color="var(--chakra-colors-blue-300)"
-            />
-          ) : (
-            getIcon(c.type as ConnectorsWithTypes)
-          )}
+          {isConnecting ||
+            (connectorLoading === c.type && (
+              <Box position="absolute">
+                <Spinner
+                  w="48px"
+                  h="48px"
+                  size="4px"
+                  color="var(--chakra-colors-blue-300)"
+                />
+              </Box>
+            ))}
+          {getIcon(c.type as ConnectorsWithTypes)}
         </Button>
       ))}
     </HStack>

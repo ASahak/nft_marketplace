@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { Flex } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
@@ -11,7 +12,9 @@ import {
   RouterMotion,
   Footer
 } from '@/components'
-import { useIsClient } from '@/hooks'
+import { dispatchBus, useIsClient } from '@/hooks'
+import { EVENT_BUS } from '@/utils/constants/global'
+
 const CustomScrollbar = dynamic(
   () => import('@/components/customScrollbar').then((m) => m.CustomScrollbar),
   {
@@ -27,6 +30,13 @@ function BaseLayout({ children }: IProps) {
   const pathname = usePathname()
   const isClient = useIsClient()
   const { height } = useWindowSize()
+
+  useEffect(
+    () => () => {
+      dispatchBus({ type: EVENT_BUS.reCalcScrollbar }) // should trigger for recalculate the scrollbar thumbs after loading effect
+    },
+    [pathname]
+  )
 
   return (
     <>

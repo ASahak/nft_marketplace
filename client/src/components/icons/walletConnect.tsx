@@ -1,10 +1,16 @@
-export const WalletConnectIcon = () => {
+export const WalletConnectIcon = ({
+  width = 48,
+  height = 48
+}: {
+  width?: string | number
+  height?: string | number
+}) => {
   return (
     <svg
       fill="none"
-      height="48"
+      height={height}
       viewBox="0 0 480 332"
-      width="48"
+      width={width}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

@@ -11,10 +11,18 @@ import {
   Grid,
   GridItem
 } from '@chakra-ui/react'
+import { useRouter } from 'next/navigation'
 import { Hero as HeroBG } from '@/components/icons'
 import { Container } from '@/components'
+import ROUTE_PATHS from '@/utils/constants/routes'
 
 export const Hero = memo(() => {
+  const router = useRouter()
+
+  const goToCreate = () => {
+    router.push(ROUTE_PATHS.CREATE)
+  }
+
   return (
     <Container zIndex={1}>
       <Grid
@@ -39,7 +47,7 @@ export const Hero = memo(() => {
               NFTs
             </Text>
             <Flex gap={6}>
-              <Button variant="outline" w="14rem">
+              <Button variant="outline" w="14rem" onClick={goToCreate}>
                 Create
               </Button>
               <Button variant="primary" w="14rem">

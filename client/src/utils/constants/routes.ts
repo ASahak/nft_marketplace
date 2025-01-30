@@ -11,6 +11,7 @@ export const NAV_ITEMS = [
 
 export default {
   DASHBOARD: '/',
+  CREATE: '/create',
   COLLECTIONS: '/collections',
   SELLERS: '/sellers',
   COLLECTION: '/collection/{id}',

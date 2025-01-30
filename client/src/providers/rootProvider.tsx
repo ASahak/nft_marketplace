@@ -3,6 +3,10 @@
 import { type ReactNode, FC, useState } from 'react'
 import { cookieToInitialState, WagmiProvider } from 'wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import {
+  ReactSkeletonProvider,
+  SKELETON_ANIMATION_VARIANTS
+} from 'react-skeleton-builder'
 import Popup from '@/components/popup'
 import { PopupProvider } from '@/providers'
 import { getConfig } from '@/wagmi-config'
@@ -21,13 +25,28 @@ export const RootProvider: FC<RootProviderProps> = ({
   const [queryClient] = useState(() => new QueryClient())
 
   return (
-    <WagmiProvider config={config} reconnectOnMount initialState={initialState}>
-      <QueryClientProvider client={queryClient}>
-        <PopupProvider>
-          {children}
-          <Popup />
-        </PopupProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+    <ReactSkeletonProvider
+      value={{
+        isDark: true,
+        skeletonAnimation: SKELETON_ANIMATION_VARIANTS.SLIDE,
+        colorTheme: {
+          dark: { main: '#282c34', gradient: '#2c303a' },
+          light: { main: '#f1f1f1', gradient: '#ececec' }
+        }
+      }}
+    >
+      <WagmiProvider
+        config={config}
+        reconnectOnMount
+        initialState={initialState}
+      >
+        <QueryClientProvider client={queryClient}>
+          <PopupProvider>
+            {children}
+            <Popup />
+          </PopupProvider>
+        </QueryClientProvider>
+      </WagmiProvider>
+    </ReactSkeletonProvider>
   )
 }

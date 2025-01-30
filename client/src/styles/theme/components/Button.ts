@@ -63,8 +63,8 @@ export default defineStyleConfig({
       },
       _disabled: {
         opacity: 1,
-        bg: 'var(--chakra-colors-blue-550) !important',
-        color: 'var(--chakra-colors-blue-800) !important'
+        bg: 'var(--chakra-colors-blue-600) !important',
+        color: 'var(--chakra-colors-gray-300) !important'
       }
     },
     outline: {

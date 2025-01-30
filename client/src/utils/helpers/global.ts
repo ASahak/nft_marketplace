@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js'
+import { FieldValues, Path, PathValue, UseFormReturn } from 'react-hook-form'
 import { toBig } from './bignumber'
 
 export const trimString = (
@@ -82,4 +83,27 @@ export const remToPixel = (value: number, withUnit?: boolean) => {
   // Convert rem to pixels
   const result = value * rootFontSize
   return withUnit ? result + 'px' : result
+}
+
+export const isEmpty = (data: Record<string, any>, widthValues?: boolean) => {
+  if (widthValues) {
+    return Object.keys(data).length === 0
+      ? true
+      : Object.values(data).every((value) => value === '')
+  }
+
+  return Object.keys(data).length === 0
+}
+
+export const setFormValue = <
+  TInputs extends FieldValues,
+  K extends Path<TInputs>
+>(
+  form: UseFormReturn<TInputs>,
+  key: K,
+  value: PathValue<TInputs, K>
+) => {
+  form.setValue(key, value)
+  form.clearErrors(key)
+  form.trigger(key)
 }

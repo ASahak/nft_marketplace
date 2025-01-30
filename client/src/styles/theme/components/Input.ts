@@ -7,7 +7,14 @@ export default defineStyleConfig({
   sizes: {
     md: {
       field: {
-        h: '4rem'
+        h: '4rem',
+        fontSize: '1.4rem'
+      }
+    },
+    lg: {
+      field: {
+        h: '5rem',
+        fontSize: '1.6rem'
       }
     }
   },
@@ -36,18 +43,16 @@ export default defineStyleConfig({
         }
       }
     }),
-    base: ({ colorMode }) => ({
+    base: {
       field: {
         border: '1px solid',
-        borderColor: colorMode === 'dark' ? '#25272D' : '#E3E5E8',
+        borderColor: 'gray.600',
         boxShadow: 'none',
         borderRadius: '0.8rem ',
-        bgColor: colorMode === 'dark' ? 'gray.700' : 'white',
-        color: colorMode === 'dark' ? 'white' : 'black',
-        fontSize: '1.4rem',
+        bgColor: 'gray.700',
+        color: 'white',
         py: '1.2rem',
         px: '1.4rem',
-        h: '4rem',
         _placeholder: {
           color: 'gray.400'
         },
@@ -58,7 +63,9 @@ export default defineStyleConfig({
           borderColor: 'blue.300'
         }
       }
-    })
+    }
   },
-  defaultProps: {}
+  defaultProps: {
+    size: 'md'
+  }
 })

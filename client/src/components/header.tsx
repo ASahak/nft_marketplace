@@ -4,10 +4,11 @@ import { memo } from 'react'
 import RouterLink from 'next/link'
 import { Box, Flex, Link, useBreakpointValue } from '@chakra-ui/react'
 import { isMobile } from 'react-device-detect'
+import dynamic from 'next/dynamic'
+import Skeleton from 'react-skeleton-builder'
 import { Container, ConnectButton, Search } from '@/components'
 import { Logo } from '@/components/icons'
 import ROUTE_PATHS from '@/utils/constants/routes'
-import dynamic from 'next/dynamic'
 const NavbarDesktop = dynamic(
   () => import('@/components/navbar').then((r) => r.NavbarDesktop),
   {
@@ -17,7 +18,12 @@ const NavbarDesktop = dynamic(
 const NavbarMobile = dynamic(
   () => import('@/components/navbar').then((r) => r.NavbarMobile),
   {
-    loading: () => null
+    loading: () => (
+      <Skeleton
+        styles={{ width: '4rem', height: '4rem' }}
+        grid={{ children: [{ skeletons: [{ r: '.8rem' }] }] }}
+      />
+    )
   }
 )
 
