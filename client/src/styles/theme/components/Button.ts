@@ -84,10 +84,17 @@ export default defineStyleConfig({
         bgColor: 'transparent'
       },
       _active: {
+        borderColor: 'blue.400',
         bgColor: 'gray.550'
       },
       _focus: {
+        borderColor: 'blue.300',
         boxShadow: '0px 0px 0px 1px transparent'
+      },
+      _disabled: {
+        _hover: {
+          borderColor: 'gray.560'
+        }
       }
     },
     connect: () => ({

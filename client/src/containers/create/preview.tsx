@@ -1,7 +1,8 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Box, Flex, Icon, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
 import { useDropzone } from 'react-dropzone'
 import { RiUploadLine } from 'react-icons/ri'
+import { FaRegTrashCan } from 'react-icons/fa6'
 import NextImage from 'next/image'
 import { breakpoints } from '@/styles/theme'
 import { Preloader } from '@/components'
@@ -37,22 +38,22 @@ export const Preview = memo(() => {
   }
 
   return (
-    <Box h="full" minH="50rem" mt={6}>
+    <Box h="full" minH="50rem" maxH="64rem" mt={6}>
       {previewImgUrl || previewVideoUrl ? (
         <Box
           h="full"
           w="full"
-          border={'1px solid'}
+          border="1px solid"
           borderColor="gray.500"
           overflow="hidden"
           borderRadius=".8rem"
         >
-          <Box position="relative" w="full" h="full">
+          <Flex alignItems="center" position="relative" w="full" h="full">
             {srcLoading ? (
               <Preloader position="absolute" h="full" w="full" />
-            ) : (
+            ) : previewImgUrl ? (
               <RemovePreviewButton onRemove={onRemove} />
-            )}
+            ) : null}
             {previewImgUrl ? (
               <NextImage
                 src={previewImgUrl}
@@ -67,16 +68,33 @@ export const Preview = memo(() => {
                 }}
               />
             ) : (
-              <video
-                onLoadedData={() => setSrcLoading(false)}
-                width="100%"
-                style={{ height: 'inherit' }}
-                controls={false}
-                autoPlay
-                src={previewVideoUrl}
-              />
+              <Flex flexDir="column" h="full">
+                <video
+                  onLoadedData={() => setSrcLoading(false)}
+                  width="100%"
+                  style={{ flex: '1', backgroundColor: 'black' }}
+                  controls
+                  loop
+                  muted
+                  playsInline
+                  autoPlay={false}
+                >
+                  <source src={previewVideoUrl} type="video/mp4" />
+                </video>
+                <Button
+                  w="full"
+                  py={4}
+                  bgColor="gray.600 !important"
+                  borderRadius={0}
+                  _hover={{ bgColor: 'gray.650 !important' }}
+                  variant="unstyled"
+                  onClick={onRemove}
+                >
+                  <Icon as={FaRegTrashCan} fontSize="3rem" color="red.400" />
+                </Button>
+              </Flex>
             )}
-          </Box>
+          </Flex>
         </Box>
       ) : (
         <Box {...getRootProps()} w="full" h="full" cursor="pointer">

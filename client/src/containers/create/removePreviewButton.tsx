@@ -12,6 +12,7 @@ export const RemovePreviewButton = ({ onRemove }: { onRemove: () => void }) => {
       bgColor="#000000c2"
       alignItems="center"
       justifyContent="center"
+      py={6}
       opacity={0}
       transition="opacity 0.2s ease-in-out"
       backdropFilter="blur(4px)"

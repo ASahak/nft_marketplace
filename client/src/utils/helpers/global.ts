@@ -107,3 +107,7 @@ export const setFormValue = <
   form.clearErrors(key)
   form.trigger(key)
 }
+
+export const isNumber = (value: string | number) => {
+  return !isNaN(parseFloat(value as string)) && isFinite(value as number)
+}

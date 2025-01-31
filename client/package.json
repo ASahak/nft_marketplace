@@ -38,6 +38,7 @@
     "react-use": "^17.5.1",
     "slick-carousel": "^1.8.1",
     "use-debounce": "^10.0.4",
+    "uuid": "^11.0.5",
     "viem": "latest",
     "wagmi": "latest",
     "yup": "^1.6.1"
