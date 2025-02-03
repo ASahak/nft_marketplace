@@ -1,10 +1,4 @@
-import React, {
-  Dispatch,
-  memo,
-  SetStateAction,
-  useCallback,
-  useState
-} from 'react'
+import React, { memo, useCallback, useEffect, useState } from 'react'
 import {
   Button,
   Grid,
@@ -18,26 +12,24 @@ import { FaRegTrashCan } from 'react-icons/fa6'
 import { v4 as uuidv4 } from 'uuid'
 import { RxPlus } from 'react-icons/rx'
 import { IAttr } from './form'
+import { useCreateNFT } from '@/providers/createNFTProvider'
 
 type IProps = {
   data: IAttr[]
   onChange: (data: IAttr[]) => void
-  onErrorEmit: Dispatch<SetStateAction<boolean>>
 }
-export const Attributes = memo(({ data, onChange, onErrorEmit }: IProps) => {
+export const Attributes = memo(({ data, onChange }: IProps) => {
   const [newItemType, setNewItemType] = useState('')
   const [newItemName, setNewItemName] = useState('')
 
   const hasDuplicateType = useCallback(
     (type: string) => {
-      const hasDuplication =
+      return (
         data
           .map((e) => e.type)
           .concat(newItemType)
           .filter((_t) => _t === type).length > 1
-      onErrorEmit(hasDuplication)
-
-      return hasDuplication
+      )
     },
     [data, newItemType]
   )
@@ -125,6 +117,12 @@ const AttributeRow = ({
   onClickBtn: (index: number) => void
   btnIcon: React.ReactNode
 }) => {
+  const { setAttributesError } = useCreateNFT()
+
+  useEffect(() => {
+    setAttributesError(isDuplicated)
+  }, [isDuplicated])
+
   return (
     <VStack spacing={2} w="full">
       <Grid gap={4} w="full" gridTemplateColumns="1fr 1fr 5rem">

@@ -72,7 +72,7 @@ export default async function HomePage() {
   return (
     <Box w="full">
       <Hero />
-      <VStack spacing="6rem" w="full">
+      <VStack spacing="6rem" pb="6rem" w="full">
         <Collections list={collections} />
         <Steps />
         <Sellers list={sellers} />

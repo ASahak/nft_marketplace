@@ -1,29 +1,35 @@
-import React, { memo, useCallback, useState } from 'react'
-import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
+import React, { memo, useCallback, useEffect, useState } from 'react'
+import { Box, Button, Flex, Icon, Text, useToast } from '@chakra-ui/react'
 import { useDropzone } from 'react-dropzone'
 import { RiUploadLine } from 'react-icons/ri'
 import { FaRegTrashCan } from 'react-icons/fa6'
 import NextImage from 'next/image'
+import { useFormContext } from 'react-hook-form'
 import { breakpoints } from '@/styles/theme'
 import { Preloader } from '@/components'
 import { RemovePreviewButton } from './removePreviewButton'
+import { setFormValue } from '@/utils/helpers/global'
 
-const MAX_FILE_SIZE = 50 * 1024 * 1024
-const fileTypes = ['JPG', 'PNG', 'GIF', 'SVG', 'MP4']
+export const MAX_FILE_SIZE = 50 * 1024 * 1024
+export const fileTypes = ['JPG', 'PNG', 'GIF', 'SVG', 'WEBP', 'MP4']
 export const Preview = memo(() => {
   const [srcLoading, setSrcLoading] = useState(false)
-  const [previewImgUrl, setPreviewImgUrl] = useState('')
-  const [previewVideoUrl, setPreviewVideoUrl] = useState('')
+  const form = useFormContext()
+  const toast = useToast()
+  const preview = form.watch('logo')
+  const errorPreview = form.formState.errors.logo
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    setSrcLoading(true)
-    const file = acceptedFiles[0]
-    if (file.type.includes('image/')) {
-      setPreviewImgUrl(URL.createObjectURL(file))
-    } else {
-      setPreviewVideoUrl(URL.createObjectURL(file))
-    }
-  }, [])
+  const isPreviewVideo = () => {
+    return preview.type.includes('video/')
+  }
+
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      setSrcLoading(true)
+      setFormValue(form, 'logo', acceptedFiles[0])
+    },
+    [form]
+  )
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -33,13 +39,21 @@ export const Preview = memo(() => {
   })
 
   const onRemove = () => {
-    setPreviewVideoUrl('')
-    setPreviewImgUrl('')
+    setFormValue(form, 'logo', '')
   }
 
+  useEffect(() => {
+    if (preview && errorPreview) {
+      toast({
+        title: errorPreview.message as string,
+        status: 'error'
+      })
+    }
+  }, [errorPreview, preview])
+
   return (
-    <Box h="full" minH="50rem" maxH="64rem" mt={6}>
-      {previewImgUrl || previewVideoUrl ? (
+    <Box h="full" minH="40rem" maxH="64rem">
+      {preview && !errorPreview ? (
         <Box
           h="full"
           w="full"
@@ -51,12 +65,12 @@ export const Preview = memo(() => {
           <Flex alignItems="center" position="relative" w="full" h="full">
             {srcLoading ? (
               <Preloader position="absolute" h="full" w="full" />
-            ) : previewImgUrl ? (
+            ) : !isPreviewVideo() ? (
               <RemovePreviewButton onRemove={onRemove} />
             ) : null}
-            {previewImgUrl ? (
+            {!isPreviewVideo() ? (
               <NextImage
-                src={previewImgUrl}
+                src={URL.createObjectURL(preview)}
                 onLoadingComplete={() => setSrcLoading(false)}
                 onError={() => setSrcLoading(false)}
                 alt="Set up wallet"
@@ -79,7 +93,7 @@ export const Preview = memo(() => {
                   playsInline
                   autoPlay={false}
                 >
-                  <source src={previewVideoUrl} type="video/mp4" />
+                  <source src={URL.createObjectURL(preview)} type="video/mp4" />
                 </video>
                 <Button
                   w="full"

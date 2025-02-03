@@ -40,7 +40,6 @@ export const RouterTransition = memo(
         keyProp={routerName}
         transition={hash || disableAnimation ? { duration: 0 } : null}
         style={{
-          paddingBottom: '6rem',
           minHeight: '0',
           flex: 1,
           height: '100%',

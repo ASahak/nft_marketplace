@@ -1,7 +1,7 @@
 import * as yup from 'yup'
-import { fileTypes, MAX_FILE_SIZE } from '@/containers/createNFT/preview'
+import { MAX_FILE_SIZE, fileTypes } from '@/containers/createContract/preview'
 
-export const createNFTScheme = yup.object({
+export const createContractScheme = yup.object({
   name: yup.string().required('Name is required!'),
   logo: yup
     .mixed()
@@ -26,8 +26,8 @@ export const createNFTScheme = yup.object({
         return value.size <= MAX_FILE_SIZE
       }
     ),
-  royalty: yup.string().required('Royalty is required!'),
+  symbol: yup.string().required('Symbol is required!'),
   description: yup.string().default(''),
-  externalURL: yup.string().default(''),
-  attributes: yup.array().default([])
+  blockchain: yup.string().default('ethereum'), // todo temp hardcode
+  contractType: yup.string().default('proxy') // todo temp hardcode
 })

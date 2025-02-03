@@ -1,54 +1,18 @@
-import { ChangeEvent, memo, useEffect, useMemo, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 import { VStack, Input, Button, Flex, Textarea } from '@chakra-ui/react'
-import { Controller, useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { Controller, useFormContext } from 'react-hook-form'
 import { FormFieldWithLabel } from '@/components'
-import { CreateCollectionFirst } from './createCollectionFirst'
-import { Attributes } from './attributes'
-import { createNFTScheme } from '@/utils/validators'
-import { isEmpty, isNumber, setFormValue } from '@/utils/helpers/global'
+import { isEmpty, setFormValue } from '@/utils/helpers/global'
 
-export type IAttr = {
-  type: string
-  name: string
-  id: string
-}
-export type Inputs = {
-  name: string
-  royalty: string
-  description: string
-  externalURL: string
-  attributes: IAttr[]
-}
 export const Form = memo(() => {
   const [formTriggerToValidate, setFormTriggerToValidate] = useState(true)
-  const form = useForm<Inputs>({
-    resolver: yupResolver(createNFTScheme),
-    defaultValues: {
-      name: '',
-      royalty: '',
-      description: '',
-      externalURL: '',
-      attributes: []
-    }
-  })
-  const [attributesError, setAttributesError] = useState<boolean>(false)
+  const form = useFormContext()
   const values = form.watch()
   const errors = form.formState.errors
 
   const isDisabled = useMemo(() => {
-    return !formTriggerToValidate ? !isEmpty(errors) || attributesError : true
-  }, [errors, values, formTriggerToValidate, attributesError])
-
-  const onRoyaltyChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    const value = evt.target.value.replace(/\s/g, '')
-
-    if (isNumber(value)) {
-      setFormValue(form, 'royalty', value)
-    } else if (!value) {
-      setFormValue(form, 'royalty', '')
-    }
-  }
+    return !formTriggerToValidate ? !isEmpty(errors) : true
+  }, [errors, values, formTriggerToValidate])
 
   useEffect(() => {
     ;(async () => {
@@ -60,8 +24,6 @@ export const Form = memo(() => {
 
   return (
     <VStack as="form" spacing="1.8rem">
-      <CreateCollectionFirst />
-
       <FormFieldWithLabel label="Name*">
         <Controller
           control={form.control}
@@ -69,7 +31,7 @@ export const Form = memo(() => {
           render={({ field: { value, name } }) => (
             <Input
               variant="base"
-              placeholder="Enter your NFT name"
+              placeholder="Enter collection name"
               size="lg"
               value={value}
               onChange={(e) => setFormValue(form, name, e.target.value)}
@@ -78,17 +40,17 @@ export const Form = memo(() => {
         />
       </FormFieldWithLabel>
 
-      <FormFieldWithLabel label="Royalty*">
+      <FormFieldWithLabel label="Symbol*">
         <Controller
           control={form.control}
-          name="royalty"
-          render={({ field: { value } }) => (
+          name="symbol"
+          render={({ field: { value, name } }) => (
             <Input
               variant="base"
-              placeholder="e.g. 10%"
+              placeholder="Enter symbol"
               size="lg"
               value={value}
-              onChange={onRoyaltyChange}
+              onChange={(e) => setFormValue(form, name, e.target.value)}
             />
           )}
         />
@@ -111,15 +73,16 @@ export const Form = memo(() => {
         />
       </FormFieldWithLabel>
 
-      <FormFieldWithLabel label="External URL">
+      <FormFieldWithLabel label="Blockchain*">
         <Controller
           control={form.control}
-          name="externalURL"
+          name="blockchain"
           render={({ field: { value, name } }) => (
             <Input
               variant="base"
-              placeholder="https://collection.io/item/1"
+              placeholder="Enter blockchain"
               size="lg"
+              isDisabled
               value={value}
               onChange={(e) => setFormValue(form, name, e.target.value)}
             />
@@ -127,15 +90,18 @@ export const Form = memo(() => {
         />
       </FormFieldWithLabel>
 
-      <FormFieldWithLabel label="Attributes">
+      <FormFieldWithLabel label="Contract Type*">
         <Controller
           control={form.control}
-          name="attributes"
+          name="contractType"
           render={({ field: { value, name } }) => (
-            <Attributes
-              onErrorEmit={setAttributesError}
-              data={value}
-              onChange={(data) => setFormValue(form, name, data)}
+            <Input
+              variant="base"
+              placeholder="Enter contract type"
+              size="lg"
+              isDisabled
+              value={value}
+              onChange={(e) => setFormValue(form, name, e.target.value)}
             />
           )}
         />
