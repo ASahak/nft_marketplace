@@ -11,7 +11,7 @@ import {
 import { FaRegTrashCan } from 'react-icons/fa6'
 import { v4 as uuidv4 } from 'uuid'
 import { RxPlus } from 'react-icons/rx'
-import { IAttr } from './form'
+import { IAttr } from './'
 import { useCreateNFT } from '@/providers/createNFTProvider'
 
 type IProps = {
