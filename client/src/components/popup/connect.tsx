@@ -33,7 +33,7 @@ export const Connect = memo(() => {
   const filteredConnectors = useMemo(() => {
     const set = new Set()
     return connectors.filter((item: Connector) => {
-      if (set.has(item.type)) {
+      if (set.has(item.type) || item.type === ConnectorsWithTypes.INJECTED) {
         return false
       }
       set.add(item.type)
