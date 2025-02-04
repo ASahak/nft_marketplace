@@ -111,3 +111,16 @@ export const setFormValue = <
 export const isNumber = (value: string | number) => {
   return !isNaN(parseFloat(value as string)) && isFinite(value as number)
 }
+
+export const initEruda = () => {
+  const src = 'https://cdn.jsdelivr.net/npm/eruda'
+
+  const script = document.createElement('script')
+  script.src = src
+
+  document.body.appendChild(script)
+  script.onload = () => {
+    const eruda = (window as any).eruda
+    eruda.init()
+  }
+}

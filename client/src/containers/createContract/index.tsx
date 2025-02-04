@@ -12,7 +12,7 @@ import {
   VStack
 } from '@chakra-ui/react'
 import { RxArrowLeft } from 'react-icons/rx'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm, FormProvider } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Container, WithLoggedAccount } from '@/components'
@@ -30,6 +30,7 @@ export type Inputs = {
   logo: any
 }
 export const CreateContract = () => {
+  const searchParams = useSearchParams()
   const router = useRouter()
   const methods = useForm<Inputs>({
     resolver: yupResolver(createContractScheme),
@@ -44,6 +45,10 @@ export const CreateContract = () => {
   })
 
   const goBack = () => {
+    const cameFromNFTCreation = searchParams.get('from-nft-create') // todo key name is around the app, in case you change it it should be override in the whole app
+    if (cameFromNFTCreation) {
+      return router.push(ROUTE_PATHS.CREATE_NFT)
+    }
     router.push(ROUTE_PATHS.CREATE)
   }
 

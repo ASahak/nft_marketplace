@@ -27,6 +27,7 @@ export type IAttr = {
   id: string
 }
 export type Inputs = {
+  contract: string
   name: string
   royalty: string
   logo: any
@@ -39,6 +40,7 @@ export const CreateNFT = () => {
   const methods = useForm<Inputs>({
     resolver: yupResolver(createNFTScheme),
     defaultValues: {
+      contract: '',
       name: '',
       logo: '',
       royalty: '',

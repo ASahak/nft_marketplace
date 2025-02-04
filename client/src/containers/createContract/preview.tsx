@@ -30,7 +30,10 @@ export const Preview = memo(() => {
     onDrop,
     multiple: false,
     maxFiles: 1,
-    maxSize: MAX_FILE_SIZE
+    maxSize: MAX_FILE_SIZE,
+    accept: {
+      'image/*': fileTypes.map((e) => `.${e.toLowerCase()}`)
+    }
   })
 
   const onRemove = () => {

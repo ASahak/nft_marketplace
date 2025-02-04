@@ -10,10 +10,7 @@ import { ConnectingStates } from '@/enums/connectors'
 export const WithLoggedAccount = ({ children }: { children: ReactNode }) => {
   const connectedUser = useAccount()
 
-  if (
-    connectedUser.status === ConnectingStates.RECONNECTING ||
-    connectedUser.status === ConnectingStates.CONNECTING
-  )
+  if (connectedUser.status === ConnectingStates.RECONNECTING)
     return (
       <Flex
         justifyContent="center"
@@ -30,5 +27,5 @@ export const WithLoggedAccount = ({ children }: { children: ReactNode }) => {
       </Flex>
     )
 
-  return connectedUser.isDisconnected ? <NotConnected /> : children
+  return connectedUser.isConnected ? children : <NotConnected />
 }

@@ -2,8 +2,11 @@
 
 import { http, createConfig, cookieStorage, createStorage } from 'wagmi'
 import { mainnet, sepolia } from 'wagmi/chains'
-import { coinbaseWallet, walletConnect } from 'wagmi/connectors'
-
+import { coinbaseWallet, walletConnect, metaMask } from 'wagmi/connectors'
+import { initEruda, isClient } from '@/utils/helpers/global'
+if (isClient) {
+  initEruda()
+}
 export const getConfig = () =>
   createConfig({
     chains: [mainnet, sepolia],
@@ -20,7 +23,8 @@ export const getConfig = () =>
             '--wcm-z-index': '100000'
           }
         }
-      })
+      }),
+      metaMask()
     ],
     transports: {
       [mainnet.id]: http(),

@@ -2,6 +2,7 @@ import * as yup from 'yup'
 import { fileTypes, MAX_FILE_SIZE } from '@/containers/createNFT/preview'
 
 export const createNFTScheme = yup.object({
+  contract: yup.string().required('Collection is required!'),
   name: yup.string().required('Name is required!'),
   logo: yup
     .mixed()
