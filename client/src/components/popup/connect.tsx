@@ -10,13 +10,7 @@ import {
   useState
 } from 'react'
 import { Box, Button, HStack, Icon, useToast } from '@chakra-ui/react'
-import {
-  Connector,
-  useAccount,
-  useChainId,
-  useConnect,
-  useSignMessage
-} from 'wagmi'
+import { Connector, useAccount, useChainId, useConnect } from 'wagmi'
 import { ConnectorsWithTypes } from '@/enums/connectors'
 import {
   MetamaskIcon,
@@ -35,7 +29,6 @@ export const Connect = memo(() => {
   const { onClose, isOpen } = usePopup()
   const disconnectedState = useRef(isDisconnected)
   const toast = useToast()
-  const { signMessageAsync } = useSignMessage()
 
   const filteredConnectors = useMemo(() => {
     const set = new Set()
@@ -128,16 +121,6 @@ export const Connect = memo(() => {
   }
   useEffect(() => {
     if (isConnected && isOpen && disconnectedState.current) {
-      ;(async () => {
-        try {
-          const data = await signMessageAsync({
-            message: 'Hey'
-          })
-          console.log(data)
-        } catch (err) {
-          console.log(err)
-        }
-      })()
       onClose()
     }
   }, [isConnected, isOpen])
