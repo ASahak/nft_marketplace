@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from 'react'
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Box, Flex, Icon, Text, useToast } from '@chakra-ui/react'
 import { useDropzone } from 'react-dropzone'
 import { RiUploadLine } from 'react-icons/ri'
@@ -17,6 +17,11 @@ export const Preview = memo(() => {
   const toast = useToast()
   const preview = form.watch('logo')
   const errorPreview = form.formState.errors.logo
+
+  const previewURLSrc = useMemo(
+    () => (preview ? URL.createObjectURL(preview) : ''),
+    [preview]
+  )
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -67,7 +72,7 @@ export const Preview = memo(() => {
               <RemovePreviewButton onRemove={onRemove} />
             ) : null}
             <NextImage
-              src={URL.createObjectURL(preview)}
+              src={previewURLSrc}
               onLoadingComplete={() => setSrcLoading(false)}
               onError={() => setSrcLoading(false)}
               alt="Set up wallet"

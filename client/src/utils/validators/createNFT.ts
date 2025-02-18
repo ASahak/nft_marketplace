@@ -27,7 +27,6 @@ export const createNFTScheme = yup.object({
         return value.size <= MAX_FILE_SIZE
       }
     ),
-  royalty: yup.string().required('Royalty is required!'),
   description: yup.string().default(''),
   externalURL: yup.string().default(''),
   attributes: yup.array().default([])

@@ -1,8 +1,13 @@
-import { memo, useEffect, useMemo, useState } from 'react'
-import { VStack, Input, Button, Flex, Textarea } from '@chakra-ui/react'
-import { Controller, useFormContext } from 'react-hook-form'
+import { ChangeEvent, memo, useEffect, useMemo, useState } from 'react'
+import { VStack, Input, Button, Flex, Textarea, Box } from '@chakra-ui/react'
+import {
+  Controller,
+  SubmitHandler,
+  FieldValues,
+  useFormContext
+} from 'react-hook-form'
 import { FormFieldWithLabel } from '@/components'
-import { isEmpty, setFormValue } from '@/utils/helpers/global'
+import { isEmpty, isNumber, setFormValue } from '@/utils/helpers/global'
 
 export const Form = memo(() => {
   const [formTriggerToValidate, setFormTriggerToValidate] = useState(true)
@@ -14,6 +19,20 @@ export const Form = memo(() => {
     return !formTriggerToValidate ? !isEmpty(errors) : true
   }, [errors, values, formTriggerToValidate])
 
+  const onCreateContract: SubmitHandler<FieldValues> = (formState) => {
+    console.log(formState)
+  }
+
+  const onRoyaltyChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    const value = evt.target.value.replace(/\s/g, '')
+
+    if (isNumber(value)) {
+      setFormValue(form, 'royalty', value)
+    } else if (!value) {
+      setFormValue(form, 'royalty', '')
+    }
+  }
+
   useEffect(() => {
     ;(async () => {
       // Validate form initially for initialize the errors
@@ -23,7 +42,11 @@ export const Form = memo(() => {
   }, [])
 
   return (
-    <VStack as="form" spacing="1.8rem">
+    <VStack
+      as="form"
+      spacing="1.8rem"
+      onSubmit={form.handleSubmit(onCreateContract)}
+    >
       <FormFieldWithLabel label="Name*">
         <Controller
           control={form.control}
@@ -56,6 +79,42 @@ export const Form = memo(() => {
         />
       </FormFieldWithLabel>
 
+      <Flex gap={4} w="full">
+        <Box flexBasis="70%">
+          <FormFieldWithLabel label="Recipient Address*">
+            <Controller
+              control={form.control}
+              name="recipientAddress"
+              render={({ field: { value, name } }) => (
+                <Input
+                  variant="base"
+                  placeholder="Address"
+                  size="lg"
+                  value={value}
+                  onChange={(e) => setFormValue(form, name, e.target.value)}
+                />
+              )}
+            />
+          </FormFieldWithLabel>
+        </Box>
+        <Box flexBasis="30%">
+          <FormFieldWithLabel label="Royalty*">
+            <Controller
+              control={form.control}
+              name="royalty"
+              render={({ field: { value } }) => (
+                <Input
+                  variant="base"
+                  placeholder="e.g. 10%"
+                  size="lg"
+                  value={value}
+                  onChange={onRoyaltyChange}
+                />
+              )}
+            />
+          </FormFieldWithLabel>
+        </Box>
+      </Flex>
       <FormFieldWithLabel label="Description">
         <Controller
           control={form.control}
@@ -90,25 +149,13 @@ export const Form = memo(() => {
         />
       </FormFieldWithLabel>
 
-      <FormFieldWithLabel label="Contract Type*">
-        <Controller
-          control={form.control}
-          name="contractType"
-          render={({ field: { value, name } }) => (
-            <Input
-              variant="base"
-              placeholder="Enter contract type"
-              size="lg"
-              isDisabled
-              value={value}
-              onChange={(e) => setFormValue(form, name, e.target.value)}
-            />
-          )}
-        />
-      </FormFieldWithLabel>
-
       <Flex w="full" justifyContent="end">
-        <Button variant="primary" size="lg" isDisabled={isDisabled}>
+        <Button
+          variant="primary"
+          size="lg"
+          isDisabled={isDisabled}
+          type="submit"
+        >
           Create
         </Button>
       </Flex>

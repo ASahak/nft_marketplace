@@ -9,7 +9,7 @@ export const FormFieldWithLabel = memo(({ label, children }: IProps) => {
   return (
     <VStack spacing=".2rem" w="full">
       {label && (
-        <FormLabel w="full" fontSize="1.8rem">
+        <FormLabel w="full" fontSize="1.8rem" mx={0}>
           {label}
         </FormLabel>
       )}

@@ -26,8 +26,9 @@ export const createContractScheme = yup.object({
         return value.size <= MAX_FILE_SIZE
       }
     ),
+  recipientAddress: yup.string().required('Recipient Address is required!'),
+  royalty: yup.string().required('Royalty is required!'),
   symbol: yup.string().required('Symbol is required!'),
   description: yup.string().default(''),
-  blockchain: yup.string().default('ethereum'), // todo temp hardcode
-  contractType: yup.string().default('proxy') // todo temp hardcode
+  blockchain: yup.string().default('Ethereum') // todo temp hardcode
 })

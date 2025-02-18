@@ -29,7 +29,6 @@ export type IAttr = {
 export type Inputs = {
   contract: string
   name: string
-  royalty: string
   logo: any
   description: string
   externalURL: string
@@ -43,7 +42,6 @@ export const CreateNFT = () => {
       contract: '',
       name: '',
       logo: '',
-      royalty: '',
       description: '',
       externalURL: '',
       attributes: []

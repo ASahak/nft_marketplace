@@ -24,7 +24,7 @@ import WalletConnectErrors from '@/utils/errors/walletConnect'
 export const Connect = memo(() => {
   const chainId = useChainId()
   const { isConnected, isConnecting, isDisconnected } = useAccount()
-  const { connect, connectors } = useConnect()
+  const { connectors, connectAsync } = useConnect()
   const [connectorLoading, setConnectorLoading] = useState<string>('')
   const { onClose, isOpen } = usePopup()
   const disconnectedState = useRef(isDisconnected)
@@ -107,7 +107,7 @@ export const Connect = memo(() => {
         onClose()
         return
       }
-      connect({ connector, chainId })
+      await connectAsync({ connector, chainId })
     } catch (err: any) {
       console.log(err)
       setConnectorLoading('')
@@ -119,6 +119,7 @@ export const Connect = memo(() => {
       }
     }
   }
+
   useEffect(() => {
     if (isConnected && isOpen && disconnectedState.current) {
       onClose()

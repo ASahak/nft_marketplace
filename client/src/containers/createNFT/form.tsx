@@ -1,10 +1,10 @@
-import { ChangeEvent, memo, useEffect, useMemo, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 import { VStack, Input, Button, Flex, Textarea } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { FormFieldWithLabel } from '@/components'
 import { CreateCollectionFirst } from './createCollectionFirst'
 import { Attributes } from './attributes'
-import { isEmpty, isNumber, setFormValue } from '@/utils/helpers/global'
+import { isEmpty, setFormValue } from '@/utils/helpers/global'
 import { useCreateNFT } from '@/providers/createNFTProvider'
 
 export const Form = memo(() => {
@@ -17,16 +17,6 @@ export const Form = memo(() => {
   const isDisabled = useMemo(() => {
     return !formTriggerToValidate ? !isEmpty(errors) || attributesError : true
   }, [errors, values, formTriggerToValidate, attributesError])
-
-  const onRoyaltyChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    const value = evt.target.value.replace(/\s/g, '')
-
-    if (isNumber(value)) {
-      setFormValue(form, 'royalty', value)
-    } else if (!value) {
-      setFormValue(form, 'royalty', '')
-    }
-  }
 
   useEffect(() => {
     ;(async () => {
@@ -51,22 +41,6 @@ export const Form = memo(() => {
               size="lg"
               value={value}
               onChange={(e) => setFormValue(form, name, e.target.value)}
-            />
-          )}
-        />
-      </FormFieldWithLabel>
-
-      <FormFieldWithLabel label="Royalty*">
-        <Controller
-          control={form.control}
-          name="royalty"
-          render={({ field: { value } }) => (
-            <Input
-              variant="base"
-              placeholder="e.g. 10%"
-              size="lg"
-              value={value}
-              onChange={onRoyaltyChange}
             />
           )}
         />

@@ -14,6 +14,7 @@ import {
 import { RxArrowLeft } from 'react-icons/rx'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm, FormProvider } from 'react-hook-form'
+import { useAccount } from 'wagmi'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Container, WithLoggedAccount } from '@/components'
 import { Preview } from './preview'
@@ -26,21 +27,24 @@ export type Inputs = {
   symbol: string
   blockchain: string
   description: string
-  contractType: string
   logo: any
+  recipientAddress: string
+  royalty: string
 }
 export const CreateContract = () => {
+  const connectedUser = useAccount()
   const searchParams = useSearchParams()
   const router = useRouter()
   const methods = useForm<Inputs>({
     resolver: yupResolver(createContractScheme),
     defaultValues: {
+      royalty: '',
+      recipientAddress: connectedUser.address,
       logo: '',
       name: '',
       symbol: '',
       description: '',
-      blockchain: 'ethereum', // todo temp hardcode
-      contractType: 'proxy' // todo temp hardcode
+      blockchain: 'Ethereum' // todo temp hardcode
     }
   })
 
