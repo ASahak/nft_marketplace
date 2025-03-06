@@ -25,14 +25,20 @@ import type {
 
 export interface MarketplaceInterface extends Interface {
   getFunction(
-    nameOrSignature: "buyNFT" | "listNFT" | "listings"
+    nameOrSignature: "buyNFT" | "getListingFee" | "listNFT" | "listings"
   ): FunctionFragment;
 
-  getEvent(nameOrSignatureOrTopic: "NFTListed" | "NFTSold"): EventFragment;
+  getEvent(
+    nameOrSignatureOrTopic: "MarketItemListed" | "NFTSold"
+  ): EventFragment;
 
   encodeFunctionData(
     functionFragment: "buyNFT",
     values: [AddressLike, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getListingFee",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "listNFT",
@@ -44,27 +50,40 @@ export interface MarketplaceInterface extends Interface {
   ): string;
 
   decodeFunctionResult(functionFragment: "buyNFT", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getListingFee",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "listNFT", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "listings", data: BytesLike): Result;
 }
 
-export namespace NFTListedEvent {
+export namespace MarketItemListedEvent {
   export type InputTuple = [
-    collection: AddressLike,
+    marketItemId: BigNumberish,
+    nftContract: AddressLike,
     tokenId: BigNumberish,
+    creator: AddressLike,
     seller: AddressLike,
+    owner: AddressLike,
     price: BigNumberish
   ];
   export type OutputTuple = [
-    collection: string,
+    marketItemId: bigint,
+    nftContract: string,
     tokenId: bigint,
+    creator: string,
     seller: string,
+    owner: string,
     price: bigint
   ];
   export interface OutputObject {
-    collection: string;
+    marketItemId: bigint;
+    nftContract: string;
     tokenId: bigint;
+    creator: string;
     seller: string;
+    owner: string;
     price: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
@@ -142,20 +161,32 @@ export interface Marketplace extends BaseContract {
   ): Promise<this>;
 
   buyNFT: TypedContractMethod<
-    [collection: AddressLike, tokenId: BigNumberish],
+    [contractAddress: AddressLike, _marketItemId: BigNumberish],
     [void],
     "payable"
   >;
 
+  getListingFee: TypedContractMethod<[], [bigint], "view">;
+
   listNFT: TypedContractMethod<
-    [collection: AddressLike, tokenId: BigNumberish, price: BigNumberish],
-    [void],
-    "nonpayable"
+    [contractAddress: AddressLike, tokenId: BigNumberish, price: BigNumberish],
+    [bigint],
+    "payable"
   >;
 
   listings: TypedContractMethod<
     [arg0: AddressLike, arg1: BigNumberish],
-    [[string, bigint] & { seller: string; price: bigint }],
+    [
+      [bigint, string, bigint, string, string, string, bigint] & {
+        marketItemId: bigint;
+        nftContractAddress: string;
+        tokenId: bigint;
+        creator: string;
+        seller: string;
+        owner: string;
+        price: bigint;
+      }
+    ],
     "view"
   >;
 
@@ -166,31 +197,44 @@ export interface Marketplace extends BaseContract {
   getFunction(
     nameOrSignature: "buyNFT"
   ): TypedContractMethod<
-    [collection: AddressLike, tokenId: BigNumberish],
+    [contractAddress: AddressLike, _marketItemId: BigNumberish],
     [void],
     "payable"
   >;
   getFunction(
+    nameOrSignature: "getListingFee"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
     nameOrSignature: "listNFT"
   ): TypedContractMethod<
-    [collection: AddressLike, tokenId: BigNumberish, price: BigNumberish],
-    [void],
-    "nonpayable"
+    [contractAddress: AddressLike, tokenId: BigNumberish, price: BigNumberish],
+    [bigint],
+    "payable"
   >;
   getFunction(
     nameOrSignature: "listings"
   ): TypedContractMethod<
     [arg0: AddressLike, arg1: BigNumberish],
-    [[string, bigint] & { seller: string; price: bigint }],
+    [
+      [bigint, string, bigint, string, string, string, bigint] & {
+        marketItemId: bigint;
+        nftContractAddress: string;
+        tokenId: bigint;
+        creator: string;
+        seller: string;
+        owner: string;
+        price: bigint;
+      }
+    ],
     "view"
   >;
 
   getEvent(
-    key: "NFTListed"
+    key: "MarketItemListed"
   ): TypedContractEvent<
-    NFTListedEvent.InputTuple,
-    NFTListedEvent.OutputTuple,
-    NFTListedEvent.OutputObject
+    MarketItemListedEvent.InputTuple,
+    MarketItemListedEvent.OutputTuple,
+    MarketItemListedEvent.OutputObject
   >;
   getEvent(
     key: "NFTSold"
@@ -201,15 +245,15 @@ export interface Marketplace extends BaseContract {
   >;
 
   filters: {
-    "NFTListed(address,uint256,address,uint256)": TypedContractEvent<
-      NFTListedEvent.InputTuple,
-      NFTListedEvent.OutputTuple,
-      NFTListedEvent.OutputObject
+    "MarketItemListed(uint256,address,uint256,address,address,address,uint256)": TypedContractEvent<
+      MarketItemListedEvent.InputTuple,
+      MarketItemListedEvent.OutputTuple,
+      MarketItemListedEvent.OutputObject
     >;
-    NFTListed: TypedContractEvent<
-      NFTListedEvent.InputTuple,
-      NFTListedEvent.OutputTuple,
-      NFTListedEvent.OutputObject
+    MarketItemListed: TypedContractEvent<
+      MarketItemListedEvent.InputTuple,
+      MarketItemListedEvent.OutputTuple,
+      MarketItemListedEvent.OutputObject
     >;
 
     "NFTSold(address,uint256,address,uint256)": TypedContractEvent<

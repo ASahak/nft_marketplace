@@ -5,22 +5,73 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f43feae0-5200-4b59-98bc-343249e5b784" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/test/Marketplace.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/nft-marketplace.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/client/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/formFieldWithLabel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/formFieldWithLabel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/test/NFTCollection.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/access/Ownable.sol/Ownable.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/access/Ownable.sol/Ownable.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/interfaces/IERC2981.sol/IERC2981.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/interfaces/IERC2981.sol/IERC2981.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/interfaces/IERC4906.sol/IERC4906.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/interfaces/IERC4906.sol/IERC4906.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/interfaces/draft-IERC6093.sol/IERC1155Errors.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/interfaces/draft-IERC6093.sol/IERC1155Errors.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/interfaces/draft-IERC6093.sol/IERC20Errors.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/interfaces/draft-IERC6093.sol/IERC20Errors.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/interfaces/draft-IERC6093.sol/IERC721Errors.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/interfaces/draft-IERC6093.sol/IERC721Errors.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/ERC721.sol/ERC721.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/ERC721.sol/ERC721.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/IERC721.sol/IERC721.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/IERC721.sol/IERC721.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol/IERC721Receiver.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol/IERC721Receiver.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol/ERC721URIStorage.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol/ERC721URIStorage.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol/IERC721Metadata.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol/IERC721Metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol/ERC721Utils.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol/ERC721Utils.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/Context.sol/Context.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/Context.sol/Context.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/Panic.sol/Panic.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/Panic.sol/Panic.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/Strings.sol/Strings.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/Strings.sol/Strings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/introspection/ERC165.sol/ERC165.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/introspection/ERC165.sol/ERC165.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/introspection/IERC165.sol/IERC165.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/introspection/IERC165.sol/IERC165.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/math/Math.sol/Math.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/math/Math.sol/Math.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/math/SafeCast.sol/SafeCast.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/math/SafeCast.sol/SafeCast.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/math/SignedMath.sol/SignedMath.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/@openzeppelin/contracts/utils/math/SignedMath.sol/SignedMath.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/build-info/15bf29852779cc72435effaa13813435.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/contracts/CollectionFactory.sol/CollectionFactory.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/contracts/CollectionFactory.sol/CollectionFactory.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/contracts/Marketplace.sol/Marketplace.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/contracts/Marketplace.sol/Marketplace.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/contracts/NFTCollection.sol/NFTCollection.dbg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/artifacts/contracts/NFTCollection.sol/NFTCollection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/cache/solidity-files-cache.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/contracts/CollectionFactory.sol" beforeDir="false" afterPath="$PROJECT_DIR$/backend/contracts/CollectionFactory.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/contracts/Marketplace.sol" beforeDir="false" afterPath="$PROJECT_DIR$/backend/contracts/Marketplace.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/contracts/NFTCollection.sol" beforeDir="false" afterPath="$PROJECT_DIR$/backend/contracts/NFTCollection.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/test/Marketplace.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/@openzeppelin/contracts/interfaces/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/@openzeppelin/contracts/interfaces/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/@openzeppelin/contracts/token/ERC721/extensions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/@openzeppelin/contracts/token/ERC721/extensions/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/contracts/CollectionFactory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/contracts/CollectionFactory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/contracts/Marketplace.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/contracts/Marketplace.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/contracts/NFTCollection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/contracts/NFTCollection.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/factories/@openzeppelin/contracts/interfaces/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/factories/@openzeppelin/contracts/interfaces/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/factories/@openzeppelin/contracts/token/ERC721/extensions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/factories/@openzeppelin/contracts/token/ERC721/extensions/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/factories/contracts/CollectionFactory__factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/factories/contracts/CollectionFactory__factory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/factories/contracts/Marketplace__factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/factories/contracts/Marketplace__factory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/factories/contracts/NFTCollection__factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/factories/contracts/NFTCollection__factory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/hardhat.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/hardhat.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/typechain-types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/typechain-types/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/popup/connect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/popup/connect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/containers/createContract/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/createContract/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/containers/createContract/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/createContract/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/containers/createContract/preview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/createContract/preview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/containers/createNFT/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/createNFT/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/containers/createNFT/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/createNFT/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/containers/createNFT/preview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/createNFT/preview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/validators/createContract.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/validators/createContract.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/validators/createNFT.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/validators/createNFT.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +96,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/s.artur/Desktop/ASahak/nft_marketplace",
+    "last_opened_file_path": "C:/Users/s.artur/Desktop/ASahak/nft_marketplace/backend/test",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -57,6 +108,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\backend\test" />
       <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace" />
       <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\backend2" />
       <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\backend" />
@@ -80,7 +132,17 @@
       <updated>1739451034128</updated>
       <workItem from="1739451035686" duration="4296000" />
       <workItem from="1739515519432" duration="7622000" />
-      <workItem from="1739861471041" duration="14546000" />
+      <workItem from="1739861471041" duration="14680000" />
+      <workItem from="1739949588592" duration="12000" />
+      <workItem from="1739953186859" duration="1436000" />
+      <workItem from="1739974597569" duration="796000" />
+      <workItem from="1740035321523" duration="1193000" />
+      <workItem from="1740057505891" duration="5683000" />
+      <workItem from="1740117866832" duration="601000" />
+      <workItem from="1740122394392" duration="447000" />
+      <workItem from="1741002600597" duration="2782000" />
+      <workItem from="1741068696558" duration="8479000" />
+      <workItem from="1741241094263" duration="15770000" />
     </task>
     <servers />
   </component>

@@ -14,14 +14,16 @@ export type { IERC20Errors } from "./@openzeppelin/contracts/interfaces/draft-IE
 export { IERC20Errors__factory } from "./factories/@openzeppelin/contracts/interfaces/draft-IERC6093.sol/IERC20Errors__factory";
 export type { IERC721Errors } from "./@openzeppelin/contracts/interfaces/draft-IERC6093.sol/IERC721Errors";
 export { IERC721Errors__factory } from "./factories/@openzeppelin/contracts/interfaces/draft-IERC6093.sol/IERC721Errors__factory";
-export type { IERC2981 } from "./@openzeppelin/contracts/interfaces/IERC2981";
-export { IERC2981__factory } from "./factories/@openzeppelin/contracts/interfaces/IERC2981__factory";
 export type { IERC4906 } from "./@openzeppelin/contracts/interfaces/IERC4906";
 export { IERC4906__factory } from "./factories/@openzeppelin/contracts/interfaces/IERC4906__factory";
 export type { ERC721 } from "./@openzeppelin/contracts/token/ERC721/ERC721";
 export { ERC721__factory } from "./factories/@openzeppelin/contracts/token/ERC721/ERC721__factory";
+export type { ERC721Enumerable } from "./@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable";
+export { ERC721Enumerable__factory } from "./factories/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable__factory";
 export type { ERC721URIStorage } from "./@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage";
 export { ERC721URIStorage__factory } from "./factories/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage__factory";
+export type { IERC721Enumerable } from "./@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable";
+export { IERC721Enumerable__factory } from "./factories/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable__factory";
 export type { IERC721Metadata } from "./@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata";
 export { IERC721Metadata__factory } from "./factories/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata__factory";
 export type { IERC721 } from "./@openzeppelin/contracts/token/ERC721/IERC721";
@@ -34,6 +36,8 @@ export type { IERC165 } from "./@openzeppelin/contracts/utils/introspection/IERC
 export { IERC165__factory } from "./factories/@openzeppelin/contracts/utils/introspection/IERC165__factory";
 export type { SafeCast } from "./@openzeppelin/contracts/utils/math/SafeCast";
 export { SafeCast__factory } from "./factories/@openzeppelin/contracts/utils/math/SafeCast__factory";
+export type { ReentrancyGuard } from "./@openzeppelin/contracts/utils/ReentrancyGuard";
+export { ReentrancyGuard__factory } from "./factories/@openzeppelin/contracts/utils/ReentrancyGuard__factory";
 export type { Strings } from "./@openzeppelin/contracts/utils/Strings";
 export { Strings__factory } from "./factories/@openzeppelin/contracts/utils/Strings__factory";
 export type { CollectionFactory } from "./contracts/CollectionFactory";

@@ -24,17 +24,47 @@ import type {
 } from "../common";
 
 export interface CollectionFactoryInterface extends Interface {
-  getFunction(nameOrSignature: "createCollection"): FunctionFragment;
+  getFunction(
+    nameOrSignature:
+      | "collections"
+      | "createCollection"
+      | "getAllCollections"
+      | "getMyCollections"
+  ): FunctionFragment;
 
   getEvent(nameOrSignatureOrTopic: "CollectionCreated"): EventFragment;
 
   encodeFunctionData(
+    functionFragment: "collections",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "createCollection",
     values: [string, string, string, AddressLike, BigNumberish]
   ): string;
+  encodeFunctionData(
+    functionFragment: "getAllCollections",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getMyCollections",
+    values: [AddressLike]
+  ): string;
 
   decodeFunctionResult(
+    functionFragment: "collections",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "createCollection",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getAllCollections",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getMyCollections",
     data: BytesLike
   ): Result;
 }
@@ -45,18 +75,14 @@ export namespace CollectionCreatedEvent {
     owner: AddressLike,
     name: string,
     symbol: string,
-    description: string,
-    royaltyReceiver: AddressLike,
-    royaltyFee: BigNumberish
+    description: string
   ];
   export type OutputTuple = [
     collectionAddress: string,
     owner: string,
     name: string,
     symbol: string,
-    description: string,
-    royaltyReceiver: string,
-    royaltyFee: bigint
+    description: string
   ];
   export interface OutputObject {
     collectionAddress: string;
@@ -64,8 +90,6 @@ export namespace CollectionCreatedEvent {
     name: string;
     symbol: string;
     description: string;
-    royaltyReceiver: string;
-    royaltyFee: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -116,6 +140,8 @@ export interface CollectionFactory extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
+  collections: TypedContractMethod<[arg0: BigNumberish], [string], "view">;
+
   createCollection: TypedContractMethod<
     [
       name: string,
@@ -128,10 +154,21 @@ export interface CollectionFactory extends BaseContract {
     "nonpayable"
   >;
 
+  getAllCollections: TypedContractMethod<[], [string[]], "view">;
+
+  getMyCollections: TypedContractMethod<
+    [user: AddressLike],
+    [string[]],
+    "view"
+  >;
+
   getFunction<T extends ContractMethod = ContractMethod>(
     key: string | FunctionFragment
   ): T;
 
+  getFunction(
+    nameOrSignature: "collections"
+  ): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
   getFunction(
     nameOrSignature: "createCollection"
   ): TypedContractMethod<
@@ -145,6 +182,12 @@ export interface CollectionFactory extends BaseContract {
     [string],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "getAllCollections"
+  ): TypedContractMethod<[], [string[]], "view">;
+  getFunction(
+    nameOrSignature: "getMyCollections"
+  ): TypedContractMethod<[user: AddressLike], [string[]], "view">;
 
   getEvent(
     key: "CollectionCreated"
@@ -155,7 +198,7 @@ export interface CollectionFactory extends BaseContract {
   >;
 
   filters: {
-    "CollectionCreated(address,address,string,string,string,address,uint96)": TypedContractEvent<
+    "CollectionCreated(address,address,string,string,string)": TypedContractEvent<
       CollectionCreatedEvent.InputTuple,
       CollectionCreatedEvent.OutputTuple,
       CollectionCreatedEvent.OutputObject

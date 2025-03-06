@@ -29,7 +29,7 @@ export const Connect = memo(() => {
   const { onClose, isOpen } = usePopup()
   const disconnectedState = useRef(isDisconnected)
   const toast = useToast()
-
+  console.log(connectors)
   const filteredConnectors = useMemo(() => {
     const set = new Set()
     return connectors.filter((item: Connector) => {
