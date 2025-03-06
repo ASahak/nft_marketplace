@@ -2,7 +2,12 @@
 
 import { http, createConfig, cookieStorage, createStorage } from 'wagmi'
 import { mainnet, sepolia, bahamut } from 'wagmi/chains'
-import { coinbaseWallet, walletConnect, metaMask } from 'wagmi/connectors'
+import {
+  coinbaseWallet,
+  walletConnect,
+  metaMask,
+  injected
+} from 'wagmi/connectors'
 import { initEruda, isClient } from '@/utils/helpers/global'
 
 if (isClient) {
@@ -18,6 +23,7 @@ export const getConfig = () =>
       storage: cookieStorage
     }),
     connectors: [
+      injected(),
       coinbaseWallet(),
       walletConnect({
         projectId: process.env.NEXT_PUBLIC_WC_PROJECT_ID!,
