@@ -29,7 +29,7 @@ export const Connect = memo(() => {
   const { onClose, isOpen } = usePopup()
   const disconnectedState = useRef(isDisconnected)
   const toast = useToast()
-  console.log(connectors)
+
   const filteredConnectors = useMemo(() => {
     const set = new Set()
     return connectors.filter((item: Connector) => {
@@ -40,7 +40,8 @@ export const Connect = memo(() => {
       return true
     })
   }, [connectors])
-
+  console.log(connectors, 'CONNECTORS')
+  console.log(filteredConnectors, 'FILTERED')
   const getIcon = useCallback(
     (type: ConnectorsWithTypes): ReactNode => {
       const isLoading = connectorLoading === type && isConnecting
@@ -132,7 +133,7 @@ export const Connect = memo(() => {
       mt={4}
       w={{ base: '30rem', md: '30rem', lg: '35.2rem' }}
     >
-      {filteredConnectors.map((c) => (
+      {connectors.map((c) => (
         <Button
           key={c.type}
           title={c.name}
@@ -158,7 +159,11 @@ export const Connect = memo(() => {
               />
             </Box>
           ) : null}
-          {getIcon(c.type as ConnectorsWithTypes)}
+          {c.icon ? (
+            <img src={c.icon} alt="" />
+          ) : (
+            getIcon(c.type as ConnectorsWithTypes)
+          )}
         </Button>
       ))}
     </HStack>
