@@ -7,7 +7,6 @@
     <list default="true" id="f43feae0-5200-4b59-98bc-343249e5b784" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/popup/connect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/popup/connect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/wagmi-config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/wagmi-config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,23 +31,23 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/s.artur/Desktop/ASahak/nft_marketplace/backend/test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/s.artur/Desktop/ASahak/nft_marketplace/client&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\s.artur\\Desktop\\ASahak\\nft_marketplace\\client\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\s.artur\\Desktop\\ASahak\\nft_marketplace\\backend\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\client" />
       <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\backend\test" />
       <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace" />
       <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\backend2" />
       <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\backend" />
-      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\backend\contracts" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -83,7 +82,15 @@
       <workItem from="1741324568663" duration="11000" />
       <workItem from="1741334156907" duration="3265000" />
       <workItem from="1741587796933" duration="5000" />
-      <workItem from="1741612208648" duration="250000" />
+      <workItem from="1741612208648" duration="2071000" />
+      <workItem from="1741615333669" duration="8845000" />
+      <workItem from="1741673658400" duration="1826000" />
+      <workItem from="1741682344282" duration="20000" />
+      <workItem from="1741685656631" duration="127000" />
+      <workItem from="1741861072625" duration="282000" />
+      <workItem from="1742285231442" duration="19000" />
+      <workItem from="1743587277184" duration="189000" />
+      <workItem from="1743683916269" duration="60000" />
     </task>
     <servers />
   </component>

@@ -40,7 +40,7 @@ export const Connect = memo(() => {
       return true
     })
   }, [connectors])
-  console.log(connectors, 'CONNECTORS')
+  console.log(connectors, 'CONNECTORS', navigator.userAgent)
   console.log(filteredConnectors, 'FILTERED')
   const getIcon = useCallback(
     (type: ConnectorsWithTypes): ReactNode => {
