@@ -2,10 +2,10 @@
 
 import { ReactNode } from 'react'
 import { Flex } from '@chakra-ui/react'
-import { useAccount } from 'wagmi'
 import { NotConnected } from '@/components'
+import { useAccount } from 'wagmi'
 import { Spinner } from '@/components/icons'
-import { ConnectingStates } from '@/enums/connectors'
+import { ConnectingStates } from '@/enums/connect'
 
 export const WithLoggedAccount = ({ children }: { children: ReactNode }) => {
   const connectedUser = useAccount()

@@ -1,8 +1,8 @@
 export enum ConnectorsWithTypes {
   INJECTED = 'injected',
-  METAMASK = 'metaMask',
+  METAMASK = 'metaMask,metaMask-io,io.metamask,io.metamask.mobile,metaMaskSDK',
   WALLET_CONNECT = 'walletConnect',
-  COINBASE_WALLET = 'coinbaseWallet'
+  ONE_KEY = 'oneKey,so.onekey.app.wallet,onekey-io,onekey'
 }
 
 export enum ConnectingStates {

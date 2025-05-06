@@ -8,7 +8,7 @@ import {
   SKELETON_ANIMATION_VARIANTS
 } from 'react-skeleton-builder'
 import Popup from '@/components/popup'
-import { PopupProvider } from '@/providers'
+import { PopupProvider, WalletConnectProvider } from '@/providers'
 import { getConfig } from '@/wagmi-config'
 
 interface RootProviderProps {
@@ -41,10 +41,12 @@ export const RootProvider: FC<RootProviderProps> = ({
         initialState={initialState}
       >
         <QueryClientProvider client={queryClient}>
-          <PopupProvider>
-            {children}
-            <Popup />
-          </PopupProvider>
+          <WalletConnectProvider>
+            <PopupProvider>
+              {children}
+              <Popup />
+            </PopupProvider>
+          </WalletConnectProvider>
         </QueryClientProvider>
       </WagmiProvider>
     </ReactSkeletonProvider>

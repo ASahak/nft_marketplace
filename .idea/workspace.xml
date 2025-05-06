@@ -6,7 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="f43feae0-5200-4b59-98bc-343249e5b784" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/connectButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/connectButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/popup/connect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/popup/connect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/withLoggedAccount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/withLoggedAccount.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/enums/connectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/enums/connect.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hooks/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/providers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/providers/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/providers/rootProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/providers/rootProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/constants/global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/constants/global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/helpers/global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/helpers/global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/wagmi-config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/wagmi-config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,29 +36,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/s.artur/Desktop/ASahak/nft_marketplace/client&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\s.artur\\Desktop\\ASahak\\nft_marketplace\\backend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/s.artur/Desktop/ASahak/nft_marketplace/client/public/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.lint.executor": "Run",
+    "ts.external.directory.path": "C:\\Users\\s.artur\\Desktop\\ASahak\\nft_marketplace\\backend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\client" />
-      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\backend\test" />
-      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace" />
-      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\backend2" />
-      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\backend" />
+      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\client\public\images" />
+      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\client\src\types" />
+      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\client\src\utils\helpers" />
+      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\client\src\utils\errors" />
+      <recent name="C:\Users\s.artur\Desktop\ASahak\nft_marketplace\client\src\providers" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="lint" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="lint" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.lint" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -90,7 +118,11 @@
       <workItem from="1741861072625" duration="282000" />
       <workItem from="1742285231442" duration="19000" />
       <workItem from="1743587277184" duration="189000" />
-      <workItem from="1743683916269" duration="60000" />
+      <workItem from="1743683916269" duration="1024000" />
+      <workItem from="1743691867444" duration="671000" />
+      <workItem from="1743748664115" duration="194000" />
+      <workItem from="1744109884731" duration="670000" />
+      <workItem from="1746540435680" duration="6992000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,9 @@
 import BigNumber from 'bignumber.js'
+import { isMobile, isSafari } from 'react-device-detect'
 import { FieldValues, Path, PathValue, UseFormReturn } from 'react-hook-form'
 import { toBig } from './bignumber'
+import { METAMASK_ERRORS, WALLET_CONNECT_ERRORS } from '@/utils/errors/global'
+import { METAMASK_DOWNLOAD_URL } from '@/utils/constants/global'
 
 export const trimString = (
   str: string,
@@ -123,4 +126,32 @@ export const initEruda = () => {
     const eruda = (window as any).eruda
     eruda.init()
   }
+}
+
+export const userRejectedTx = (err: any) => {
+  if (err.cause && err.cause.walk) {
+    const { code } = err.cause.walk()
+    if (
+      code === METAMASK_ERRORS.userRejectedRequest.code ||
+      code === WALLET_CONNECT_ERRORS.USER_REJECTED.code ||
+      code === WALLET_CONNECT_ERRORS.USER_REJECTED_REQUEST.code
+    ) {
+      return true
+    }
+  }
+
+  return (
+    err.code === WALLET_CONNECT_ERRORS.USER_REJECTED.code ||
+    err.code === METAMASK_ERRORS.userRejectedRequest.code ||
+    err.code === WALLET_CONNECT_ERRORS.USER_REJECTED_REQUEST.code
+  )
+}
+
+export const getDAppUrl = () => {
+  const { host, pathname, search } = window.location
+  const pageUrlWithoutProtocol = encodeURI(host + pathname + search)
+
+  const dappURl = isSafari && !isMobile ? METAMASK_DOWNLOAD_URL : 'dapp://'
+
+  return `${dappURl}${pageUrlWithoutProtocol}`
 }

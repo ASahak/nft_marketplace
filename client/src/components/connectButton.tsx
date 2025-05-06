@@ -41,10 +41,6 @@ export const ConnectButton = memo((props: IProps) => {
     disconnect()
   }
 
-  const handleSwitchWallet = () => {
-    handleOpenConnect()
-  }
-
   const handleCopyAddress = () => {
     navigator.clipboard
       .writeText(connectedUser?.address || '')
@@ -90,13 +86,6 @@ export const ConnectButton = memo((props: IProps) => {
             </Text>
           </MenuButton>
           <MenuList w="24rem">
-            <MenuItem
-              onClick={handleSwitchWallet}
-              fontSize="1.6rem"
-              aria-label="Switch wallet"
-            >
-              Switch Wallet
-            </MenuItem>
             <MenuItem
               onClick={handleDisconnect}
               fontSize="1.6rem"

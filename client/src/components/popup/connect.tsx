@@ -1,120 +1,50 @@
 'use client'
 
-import {
-  memo,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react'
-import { Box, Button, HStack, Icon, useToast } from '@chakra-ui/react'
-import { Connector, useAccount, useChainId, useConnect } from 'wagmi'
-import { ConnectorsWithTypes } from '@/enums/connectors'
-import {
-  MetamaskIcon,
-  WalletConnectIcon,
-  CoinbaseIcon,
-  Spinner
-} from '@/components/icons'
+import { memo, useEffect, useRef, useState } from 'react'
+import { Box, Button, HStack, useToast } from '@chakra-ui/react'
+import { Connector, useAccount } from 'wagmi'
+import NextImage from 'next/image'
+import { Spinner } from '@/components/icons'
 import { usePopup } from '@/providers/popupProvider'
-import WalletConnectErrors from '@/utils/errors/walletConnect'
+import { useWallets } from '@/hooks'
+import {
+  getAvailableConnectors,
+  isWalletConnectConnector
+} from '@/utils/helpers/connect'
+import { useWalletConnect } from '@/providers/walletConnectProvider'
+import { WALLET_CONNECT_ERRORS } from '@/utils/errors/global'
 
 export const Connect = memo(() => {
-  const chainId = useChainId()
+  const wallets = useWallets()
   const { isConnected, isConnecting, isDisconnected } = useAccount()
-  const { connectors, connectAsync } = useConnect()
+  const { connectWithWalletConnect, connectWithEVMWallet } = useWalletConnect()
   const [connectorLoading, setConnectorLoading] = useState<string>('')
   const { onClose, isOpen } = usePopup()
   const disconnectedState = useRef(isDisconnected)
   const toast = useToast()
 
-  const filteredConnectors = useMemo(() => {
-    const set = new Set()
-    return connectors.filter((item: Connector) => {
-      if (set.has(item.type) || item.type === ConnectorsWithTypes.INJECTED) {
-        return false
-      }
-      set.add(item.type)
-      return true
-    })
-  }, [connectors])
-  console.log(connectors, 'CONNECTORS', navigator.userAgent)
-  console.log(filteredConnectors, 'FILTERED')
-  const getIcon = useCallback(
-    (type: ConnectorsWithTypes): ReactNode => {
-      const isLoading = connectorLoading === type && isConnecting
-      switch (type) {
-        case ConnectorsWithTypes.METAMASK:
-          return (
-            <Box
-              height={isLoading ? '3.6rem' : '4.8rem'}
-              width={isLoading ? '3.6rem' : '4.8rem'}
-              transition=".1s"
-              willChange="width, height"
-            >
-              <Icon
-                as={MetamaskIcon.bind(null, { height: '100%', width: '100%' })}
-              />
-            </Box>
-          )
-        case ConnectorsWithTypes.WALLET_CONNECT:
-          return (
-            <Box
-              height={isLoading ? '3.8rem' : '4.8rem'}
-              width={isLoading ? '3.8rem' : '4.8rem'}
-              transition=".1s"
-              willChange="width, height"
-            >
-              <Icon
-                as={WalletConnectIcon.bind(null, {
-                  height: '100%',
-                  width: '100%'
-                })}
-              />
-            </Box>
-          )
-        case ConnectorsWithTypes.COINBASE_WALLET:
-          return (
-            <Box
-              height={isLoading ? '2.8rem' : '4.8rem'}
-              width={isLoading ? '2.8rem' : '4.8rem'}
-              transition=".1s"
-              willChange="width, height"
-            >
-              <Icon
-                as={CoinbaseIcon.bind(null, { height: '100%', width: '100%' })}
-              />
-            </Box>
-          )
-        default:
-          return null
-      }
-    },
-    [connectorLoading, isConnecting]
-  )
-
   const connectHandler = async (connector: Connector) => {
     try {
-      setConnectorLoading(connector.type)
-      if (connector.type === ConnectorsWithTypes.METAMASK && isConnected) {
-        // switch wallet
-        const provider = await connector.getProvider()
-        await (provider as unknown as any).request({
-          method: 'wallet_requestPermissions',
-          params: [{ eth_accounts: {} }]
+      setConnectorLoading(connector.id)
+
+      // WalletConnect
+      if (isWalletConnectConnector(connector.id)) {
+        await connectWithWalletConnect(connector, (isOpen: boolean) => {
+          if (isOpen) {
+            onClose()
+          }
         })
-        onClose()
         return
       }
-      await connectAsync({ connector, chainId })
+
+      await connectWithEVMWallet(connector)
+      onClose()
     } catch (err: any) {
       console.log(err)
       setConnectorLoading('')
-      if (err.code === WalletConnectErrors.USER_REJECTED_REQUEST.code) {
+      if (err.code === WALLET_CONNECT_ERRORS.USER_REJECTED_REQUEST.code) {
         toast({
-          title: WalletConnectErrors.USER_REJECTED_REQUEST.message,
+          title: WALLET_CONNECT_ERRORS.USER_REJECTED_REQUEST.message,
           status: 'warning'
         })
       }
@@ -133,11 +63,11 @@ export const Connect = memo(() => {
       mt={4}
       w={{ base: '30rem', md: '30rem', lg: '35.2rem' }}
     >
-      {connectors.map((c) => (
+      {getAvailableConnectors(wallets).map((wallet) => (
         <Button
-          key={c.type}
-          title={c.name}
-          aria-label={`Connect with wallet ${c.name}`}
+          key={wallet.id}
+          title={wallet.name}
+          aria-label={`Connect with wallet ${wallet.name}`}
           w="full"
           variant="connect"
           justifyContent="center"
@@ -145,11 +75,11 @@ export const Connect = memo(() => {
           py={8}
           h="9rem"
           fontSize="1.6rem"
-          onClick={() => connectHandler(c)}
+          onClick={() => connectHandler(wallet)}
           textAlign="center"
           position="relative"
         >
-          {connectorLoading === c.type && isConnecting ? (
+          {connectorLoading === wallet.id && isConnecting ? (
             <Box position="absolute">
               <Spinner
                 w="48px"
@@ -159,11 +89,30 @@ export const Connect = memo(() => {
               />
             </Box>
           ) : null}
-          {c.icon ? (
-            <img src={c.icon} alt="" />
-          ) : (
-            getIcon(c.type as ConnectorsWithTypes)
-          )}
+          {/*<Box*/}
+          {/*  height={isLoading ? '3.6rem' : '4.8rem'}*/}
+          {/*  width={isLoading ? '3.6rem' : '4.8rem'}*/}
+          {/*  transition=".1s"*/}
+          {/*  willChange="width, height"*/}
+          {/*>*/}
+          {/*  <Icon*/}
+          {/*    as={MetamaskIcon.bind(null, { height: '100%', width: '100%' })}*/}
+          {/*  />*/}
+          {/*</Box>*/}
+          <Box
+            height="4rem"
+            width="4rem"
+            transition=".1s"
+            willChange="width, height"
+            position="relative"
+          >
+            <NextImage
+              alt={`Connect wallet icon: ${wallet.name}`}
+              fill
+              style={{ objectFit: 'cover' }}
+              src={wallet.icon}
+            />
+          </Box>
         </Button>
       ))}
     </HStack>
